@@ -8,6 +8,8 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
+#include "sound.h"
+#include "points.h"
 class Droplet : public QObject, public QGraphicsPixmapItem {
     Q_OBJECT
 public:
@@ -17,6 +19,9 @@ public:
 private:
     QTimer *timer;
     qreal speed = 5;
+private:
+    Points m_points; // Member variable to hold the Points object
+    Sound m_sound;   // Member variable to hold the Sound object
 private slots:
     void moveDroplet();
 signals:

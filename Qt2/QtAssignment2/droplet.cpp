@@ -9,6 +9,8 @@
 #include <QGraphicsScene>
 #include "bucket.h"
 #include "sound.h"
+#include "points.h"
+
 Droplet::Droplet() {
     // Set up timer for movement
     timer = new QTimer(this);
@@ -23,7 +25,9 @@ Droplet::~Droplet() {
 //method that moves droplets
 void Droplet::moveDroplet() {
     Sound *sound = new Sound;
-
+ //   Points *points = new Points;
+   // Points point;
+  //Sound sound;
     //if pos is within screen then move droplet
     if (scene() && pos().y() < scene()->height()) {
         setPos(x(), y() + 10);
@@ -33,20 +37,27 @@ void Droplet::moveDroplet() {
         for (int i = 0; i < colliding_items.size(); ++i) {
             //if same type where bucket is then remove droplet and returns
             if (typeid(*(colliding_items[i])) == typeid(Bucket)) {
+                sound->AddSplash();
+                m_points.addPoints(5);
+                // Call the isWon method
+                if (m_points.isWon()) {
+                    qDebug() << "You won!";
+                } else {
+                    qDebug() << "You haven't won yet.";
+                }
+
                 scene()->removeItem(this);
                 delete this;
-                sound->AddSplash();
-
                 return;
             }
         }
     } else {
         //Out of window
-        scene()->removeItem(this);
         sound->AddBeep();
-
+        m_points.minusPoints(5);
+        scene()->removeItem(this);
         delete this;
     }
-    delete sound;
-
+     delete sound;
+    // delete points;
 }

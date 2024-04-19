@@ -7,6 +7,7 @@
 Sound::Sound(QObject *parent)
     : QObject{parent}
 {
+
 }
 
 void Sound::AddSplash() {

@@ -8,6 +8,7 @@ SOURCES += \
     droplet.cpp \
     game1scene.cpp \
     main.cpp \
+    points.cpp \
     sound.cpp
 
 HEADERS += \
@@ -15,6 +16,7 @@ HEADERS += \
     cloud.h \
     droplet.h \
     game1scene.h \
+    points.h \
     sound.h
 
 RESOURCES += \

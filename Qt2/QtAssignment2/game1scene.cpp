@@ -8,7 +8,8 @@
 #include <QBrush>
 #include <QImage>
 #include <QKeyEvent>
-
+#include "sound.h"
+#include "droplet.h"
 Game1Scene::Game1Scene() {
     // Set background image
     QImage backgroundImage(":/images/background.jpg");
@@ -55,11 +56,36 @@ Game1Scene::Game1Scene() {
     cloud3->setPos(350, -5);
     cloud4->setPos(550, 10);
     cloud5->setPos(700, 0);
+
+    // connect(m_droplet, &Points::addPoints, &m_points, &Points::addPoints);
+    // connect(m_droplet, &Points::minusPoints, &m_points, &Points::minusPoints);
+
+    // // Create points rectangle
+    pointsRect = addRect(10, 10, 100, 50, QPen(Qt::black), QBrush(Qt::white)); // Create a white rectangle
+    pointsRect->setFlag(QGraphicsItem::ItemIsSelectable, false);
+    pointsRect->setFlag(QGraphicsItem::ItemIsFocusable, false);
+    pointsRect->setFlag(QGraphicsItem::ItemIsMovable, false);
+    updatePointsDisplay();
+
 }
 
 Game1Scene::~Game1Scene() {
     delete bucket;
 }
+
+
+
+
+void Game1Scene::updatePointsDisplay() {
+    // Update text in points rectangle
+    QString pointsText = QString("Points: %1").arg(pointsValue);
+    QGraphicsTextItem *pointsTextItem = new QGraphicsTextItem(pointsText, pointsRect);
+    QPointF textPos = pointsRect->boundingRect().center() - pointsTextItem->boundingRect().center();
+    pointsTextItem->setPos(textPos);
+}
+
+
+
 
 void Game1Scene::addDroplet() {
     // Create droplet
@@ -75,8 +101,6 @@ void Game1Scene::addDroplet() {
     });
 
 }
-
-
 
 
 

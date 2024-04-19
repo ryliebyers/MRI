@@ -11,7 +11,6 @@
 #include "bucket.h"
 #include <QGraphicsItem>
 #include "droplet.h"
-
 class Game1Scene : public QGraphicsScene {
     Q_OBJECT
 public:

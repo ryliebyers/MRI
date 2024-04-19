@@ -4,5 +4,7 @@
         <file>images/bucket.png</file>
         <file>images/cloud.png</file>
         <file>images/water.gif</file>
+        <file>sounds/Beep.mp3</file>
+        <file>sounds/Splash.wav</file>
     </qresource>
 </RCC>

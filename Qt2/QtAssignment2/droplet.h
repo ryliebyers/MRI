@@ -8,7 +8,6 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
-
 class Droplet : public QObject, public QGraphicsPixmapItem {
     Q_OBJECT
 public:

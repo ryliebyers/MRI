@@ -8,7 +8,7 @@
 #include <QRandomGenerator>
 #include <QGraphicsScene>
 #include "bucket.h"
-
+#include "sound.h"
 Droplet::Droplet() {
     // Set up timer for movement
     timer = new QTimer(this);
@@ -22,6 +22,8 @@ Droplet::~Droplet() {
 
 //method that moves droplets
 void Droplet::moveDroplet() {
+    Sound *sound = new Sound;
+
     //if pos is within screen then move droplet
     if (scene() && pos().y() < scene()->height()) {
         setPos(x(), y() + 10);
@@ -33,12 +35,18 @@ void Droplet::moveDroplet() {
             if (typeid(*(colliding_items[i])) == typeid(Bucket)) {
                 scene()->removeItem(this);
                 delete this;
+                sound->AddSplash();
+
                 return;
             }
         }
     } else {
         //Out of window
         scene()->removeItem(this);
+        sound->AddBeep();
+
         delete this;
     }
+    delete sound;
+
 }

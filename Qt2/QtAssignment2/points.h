@@ -4,9 +4,11 @@
 #include <QObject>
 #include <QWidget>
 #include <QLabel>
+#include <QGraphicsPixmapItem>
 
-class Points : public QObject
-{
+
+
+class Points : public QObject,  public QGraphicsPixmapItem{
     Q_OBJECT
 public:
     explicit Points(QObject *parent = nullptr);

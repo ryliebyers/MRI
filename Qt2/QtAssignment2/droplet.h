@@ -10,6 +10,9 @@
 #include <QTimer>
 #include "sound.h"
 #include "points.h"
+
+
+
 class Droplet : public QObject, public QGraphicsPixmapItem {
     Q_OBJECT
 public:
@@ -20,6 +23,9 @@ private:
     QTimer *timer;
     qreal speed = 5;
 private:
+
+
+    //might delete these later
     Points m_points; // Member variable to hold the Points object
     Sound m_sound;   // Member variable to hold the Sound object
 private slots:

@@ -8,8 +8,9 @@
 #include <QBrush>
 #include <QImage>
 #include <QKeyEvent>
-#include "sound.h"
 #include "droplet.h"
+#include "globals.h"
+
 Game1Scene::Game1Scene() {
     // Set background image
     QImage backgroundImage(":/images/background.jpg");
@@ -57,14 +58,17 @@ Game1Scene::Game1Scene() {
     cloud4->setPos(550, 10);
     cloud5->setPos(700, 0);
 
-    // connect(m_droplet, &Points::addPoints, &m_points, &Points::addPoints);
-    // connect(m_droplet, &Points::minusPoints, &m_points, &Points::minusPoints);
-
-    // // Create points rectangle
+    // Create points rectangle
     pointsRect = addRect(10, 10, 100, 50, QPen(Qt::black), QBrush(Qt::white)); // Create a white rectangle
     pointsRect->setFlag(QGraphicsItem::ItemIsSelectable, false);
     pointsRect->setFlag(QGraphicsItem::ItemIsFocusable, false);
     pointsRect->setFlag(QGraphicsItem::ItemIsMovable, false);
+
+    // Create text item for displaying points
+    QString str = QString::number(totalPoints);
+    pointsTextItem = new QGraphicsTextItem(str, pointsRect);
+    QPointF textPos = pointsRect->boundingRect().center() - pointsTextItem->boundingRect().center();
+    pointsTextItem->setPos(textPos);
     updatePointsDisplay();
 
 }
@@ -77,23 +81,30 @@ Game1Scene::~Game1Scene() {
 
 
 void Game1Scene::updatePointsDisplay() {
-    // Update text in points rectangle
-    QString pointsText = QString("Points: %1").arg(pointsValue);
-    QGraphicsTextItem *pointsTextItem = new QGraphicsTextItem(pointsText, pointsRect);
-    QPointF textPos = pointsRect->boundingRect().center() - pointsTextItem->boundingRect().center();
-    pointsTextItem->setPos(textPos);
+    if (!pointsTextItem) {
+        pointsTextItem = new QGraphicsTextItem();
+        addItem(pointsTextItem);
+        pointsTextItem->setParentItem(pointsRect);
+        QPointF textPos = pointsRect->boundingRect().center() - pointsTextItem->boundingRect().center();
+        pointsTextItem->setPos(textPos);
+    }
+
+    QString str = QString::number(totalPoints);
+    pointsTextItem->setPlainText(str);
 }
+
 
 
 
 
 void Game1Scene::addDroplet() {
     // Create droplet
+    updatePointsDisplay();
+
     Droplet *droplet = new Droplet();
     droplet->setPixmap((QPixmap(":/images/water.gif")).scaled(30, 30));
     addItem(droplet);
     droplet->setPos(rand() % 800, 0); // Random position under clouds
-
     // Connect signal for deletion
     connect(droplet, &Droplet::outOfScene, [=]() {
         removeItem(droplet);

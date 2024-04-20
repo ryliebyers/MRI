@@ -10,6 +10,11 @@
 #include "bucket.h"
 #include "sound.h"
 #include "points.h"
+#include "globals.h"
+#include "game1scene.h"
+
+
+
 
 Droplet::Droplet() {
     // Set up timer for movement
@@ -39,13 +44,14 @@ void Droplet::moveDroplet() {
             if (typeid(*(colliding_items[i])) == typeid(Bucket)) {
                 sound->AddSplash();
                 m_points.addPoints(5);
+                totalPoints+=5;
                 // Call the isWon method
                 if (m_points.isWon()) {
                     qDebug() << "You won!";
                 } else {
                     qDebug() << "You haven't won yet.";
                 }
-
+                qDebug() << "Total points: " << totalPoints;
                 scene()->removeItem(this);
                 delete this;
                 return;
@@ -55,9 +61,13 @@ void Droplet::moveDroplet() {
         //Out of window
         sound->AddBeep();
         m_points.minusPoints(5);
+        totalPoints-=5;
+        qDebug() << "Total points: " << totalPoints;
         scene()->removeItem(this);
         delete this;
     }
      delete sound;
     // delete points;
+
+
 }

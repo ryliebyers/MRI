@@ -4,7 +4,9 @@
 #include <QObject>
 #include <QAudio>
 #include <QMediaPlayer>
-class Sound : public QObject
+#include <QGraphicsPixmapItem>
+
+class Sound : public QObject, QGraphicsPixmapItem
 {
     Q_OBJECT
 public:

@@ -10,8 +10,7 @@
 #include <QTimer>
 #include "bucket.h"
 #include <QGraphicsItem>
-#include "points.h"
-#include "droplet.h"
+
 
 
 class Game1Scene : public QGraphicsScene {
@@ -19,14 +18,13 @@ class Game1Scene : public QGraphicsScene {
 public:
     Game1Scene();
     ~Game1Scene();
+
 private:
     Bucket *bucket;
     QTimer *timerDrop;
     QGraphicsRectItem *pointsRect;
-    int pointsValue;
-    Droplet *m_droplet;
-    Points *m_points;
-    QGraphicsTextItem *m_pointsLabel;
+    QGraphicsTextItem *pointsTextItem;
+
 public slots:
     void addDroplet();
     void updatePointsDisplay();

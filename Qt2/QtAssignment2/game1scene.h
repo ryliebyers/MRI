@@ -24,7 +24,7 @@ private:
     QTimer *timerDrop;
     QGraphicsRectItem *pointsRect;
     QGraphicsTextItem *pointsTextItem;
-
+    QGraphicsTextItem *dropsTextItem;
 public slots:
     void addDroplet();
     void updatePointsDisplay();

@@ -79,18 +79,50 @@ Game1Scene::~Game1Scene() {
 
 
 
+// void Game1Scene::updatePointsDisplay() {
+//     if (!pointsTextItem) {
+//         pointsTextItem = new QGraphicsTextItem();
+//         addItem(pointsTextItem);
+//         pointsTextItem->setParentItem(pointsRect);
+//         QPointF textPos = pointsRect->boundingRect().center() - pointsTextItem->boundingRect().center();
+//         pointsTextItem->setPos(textPos);
+//     }
+
+//     QString str = QString::number(totalPoints);
+//     pointsTextItem->setPlainText(str);
+// }
 void Game1Scene::updatePointsDisplay() {
+    // Update or create the text items for displaying score and drops caught
     if (!pointsTextItem) {
+        // Create the text item for displaying score
         pointsTextItem = new QGraphicsTextItem();
         addItem(pointsTextItem);
         pointsTextItem->setParentItem(pointsRect);
-        QPointF textPos = pointsRect->boundingRect().center() - pointsTextItem->boundingRect().center();
-        pointsTextItem->setPos(textPos);
+        QPointF scoreTextPos = pointsRect->boundingRect().center() - pointsTextItem->boundingRect().center();
+        pointsTextItem->setPos(scoreTextPos);
     }
 
-    QString str = QString::number(totalPoints);
-    pointsTextItem->setPlainText(str);
+    if (!dropsTextItem) {
+        // Create the text item for displaying drops caught
+        dropsTextItem = new QGraphicsTextItem();
+        addItem(dropsTextItem);
+        dropsTextItem->setParentItem(pointsRect);
+        dropsTextItem->setDefaultTextColor(Qt::red); // Set the text color to red for drops
+        QPointF dropsTextPos = pointsRect->boundingRect().center() + QPointF(0, 20); // Position it below the score
+        dropsTextItem->setPos(dropsTextPos);
+    }
+
+    // Update the text item with the current values
+    QString scoreStr = "Score: " + QString::number(totalPoints);
+    QString dropsStr = "DropsCaught: " + QString::number(DropsCaught);
+    QString combinedStr = scoreStr + "\n" + dropsStr; // Combine score and drops caught with a newline in between
+    pointsTextItem->setPlainText(combinedStr);
+
+    // Position the text item within the points rectangle
+    QPointF textPos = pointsRect->boundingRect().center() - pointsTextItem->boundingRect().center();
+    pointsTextItem->setPos(textPos);
 }
+
 
 
 

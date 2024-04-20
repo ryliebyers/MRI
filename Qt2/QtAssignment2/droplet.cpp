@@ -93,7 +93,7 @@ void Droplet::speedUp() {
         }
         timer = new QTimer(this);
         connect(timer, &QTimer::timeout, this, &Droplet::moveDroplet);
-        timer->start(80); // Start a new timer with the updated speed
+        timer->start(250/2); // Start a new timer with the updated speed
     } else if (DropsCaught >= 10 && DropsCaught <= 14) {
         // x4
         if (timer->isActive()) {
@@ -101,7 +101,7 @@ void Droplet::speedUp() {
         }
         timer = new QTimer(this);
         connect(timer, &QTimer::timeout, this, &Droplet::moveDroplet);
-        timer->start(40);
+        timer->start(250/4);
     } else if (DropsCaught >= 15 && DropsCaught <= 19 ) {
         // x8
         if (timer->isActive()) {
@@ -109,7 +109,7 @@ void Droplet::speedUp() {
         }
         timer = new QTimer(this);
         connect(timer, &QTimer::timeout, this, &Droplet::moveDroplet);
-        timer->start(20);
+        timer->start(250/8);
     } else if (DropsCaught >= 20) {
         // x16
         if (timer->isActive()) {
@@ -117,7 +117,7 @@ void Droplet::speedUp() {
         }
         timer = new QTimer(this);
         connect(timer, &QTimer::timeout, this, &Droplet::moveDroplet);
-        timer->start(10);
+        timer->start(250/16);
     }
 }
 

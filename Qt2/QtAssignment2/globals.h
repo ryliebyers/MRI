@@ -5,6 +5,6 @@
 
 
 extern int totalPoints;
-
+extern int DropsCaught;
 
 #endif // GLOBALS_H

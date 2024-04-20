@@ -11,7 +11,6 @@
 #include "sound.h"
 #include "points.h"
 #include "globals.h"
-#include "game1scene.h"
 
 
 
@@ -20,7 +19,11 @@ Droplet::Droplet() {
     // Set up timer for movement
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Droplet::moveDroplet);
-    timer->start(50);//speed
+    timer->start(250);//speed
+    speedUp();
+
+
+
 }
 
 Droplet::~Droplet() {
@@ -30,9 +33,8 @@ Droplet::~Droplet() {
 //method that moves droplets
 void Droplet::moveDroplet() {
     Sound *sound = new Sound;
- //   Points *points = new Points;
-   // Points point;
-  //Sound sound;
+    //Sound sound;
+
     //if pos is within screen then move droplet
     if (scene() && pos().y() < scene()->height()) {
         setPos(x(), y() + 10);
@@ -43,31 +45,83 @@ void Droplet::moveDroplet() {
             //if same type where bucket is then remove droplet and returns
             if (typeid(*(colliding_items[i])) == typeid(Bucket)) {
                 sound->AddSplash();
-                m_points.addPoints(5);
                 totalPoints+=5;
+                DropsCaught += 1;
+
+               // speedUp();
+
+
                 // Call the isWon method
                 if (m_points.isWon()) {
                     qDebug() << "You won!";
                 } else {
                     qDebug() << "You haven't won yet.";
                 }
-                qDebug() << "Total points: " << totalPoints;
+
                 scene()->removeItem(this);
                 delete this;
                 return;
             }
+
         }
+
     } else {
         //Out of window
         sound->AddBeep();
-        m_points.minusPoints(5);
         totalPoints-=5;
         qDebug() << "Total points: " << totalPoints;
         scene()->removeItem(this);
         delete this;
     }
      delete sound;
-    // delete points;
-
 
 }
+
+
+
+
+void Droplet::speedUp() {
+    qDebug() << "Total Collisions: " << DropsCaught;
+
+
+
+
+    if (DropsCaught >= 5 && DropsCaught <= 9 ) {
+        // x2
+        if (timer->isActive()) {
+            timer->stop(); // Stop the previous timer if active
+        }
+        timer = new QTimer(this);
+        connect(timer, &QTimer::timeout, this, &Droplet::moveDroplet);
+        timer->start(80); // Start a new timer with the updated speed
+    } else if (DropsCaught >= 10 && DropsCaught <= 14) {
+        // x4
+        if (timer->isActive()) {
+            timer->stop();
+        }
+        timer = new QTimer(this);
+        connect(timer, &QTimer::timeout, this, &Droplet::moveDroplet);
+        timer->start(40);
+    } else if (DropsCaught >= 15 && DropsCaught <= 19 ) {
+        // x8
+        if (timer->isActive()) {
+            timer->stop();
+        }
+        timer = new QTimer(this);
+        connect(timer, &QTimer::timeout, this, &Droplet::moveDroplet);
+        timer->start(20);
+    } else if (DropsCaught >= 20) {
+        // x16
+        if (timer->isActive()) {
+            timer->stop();
+        }
+        timer = new QTimer(this);
+        connect(timer, &QTimer::timeout, this, &Droplet::moveDroplet);
+        timer->start(10);
+    }
+}
+
+
+
+
+

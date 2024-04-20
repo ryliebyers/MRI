@@ -19,12 +19,10 @@ public:
     Droplet();
     ~Droplet();
     Droplet(const QPointF& cloudPosition);
+    void speedUp();
 private:
     QTimer *timer;
     qreal speed = 5;
-private:
-
-
     //might delete these later
     Points m_points; // Member variable to hold the Points object
     Sound m_sound;   // Member variable to hold the Sound object

@@ -69,7 +69,6 @@ Game1Scene::Game1Scene() {
     pointsTextItem = new QGraphicsTextItem(str, pointsRect);
     QPointF textPos = pointsRect->boundingRect().center() - pointsTextItem->boundingRect().center();
     pointsTextItem->setPos(textPos);
-    updatePointsDisplay();
 
 }
 

@@ -2,3 +2,4 @@
 
 int totalPoints =0;
 
+int DropsCaught=0;

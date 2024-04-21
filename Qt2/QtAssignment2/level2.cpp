@@ -31,6 +31,8 @@ Level2::Level2(const QString& userName, const QString& profilePicturePath)
     bucket->setFlag(QGraphicsItem::ItemIsFocusable);
     bucket->setFocus();
 
+
+
     // Create timer for droplets
     timerDrop = new QTimer(this);
     connect(timerDrop, &QTimer::timeout, this, &Level2::addDroplet);

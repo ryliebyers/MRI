@@ -5,8 +5,10 @@
 #include <QKeyEvent>
 #include "droplet.h"
 #include "globals.h"
+#include <QVBoxLayout>
 Level1::Level1(const QString& userName, const QString& profilePicturePath)
 {
+
     // Set background image
     QImage backgroundImage(":/images/background.jpg");
     if (backgroundImage.isNull()) {
@@ -28,10 +30,13 @@ Level1::Level1(const QString& userName, const QString& profilePicturePath)
     bucket->setFlag(QGraphicsItem::ItemIsFocusable);
     bucket->setFocus();
 
+
+
     // Create timer for droplets
     timerDrop = new QTimer(this);
     connect(timerDrop, &QTimer::timeout, this, &Level1::addDroplet);
     timerDrop->start(600);
+
 
     // Create and add clouds
     Cloud *cloud1 = new Cloud();
@@ -106,7 +111,6 @@ void Level1::updatePointsDisplay() {
 void Level1::addDroplet() {
     // Create droplet
     updatePointsDisplay();
-
     Droplet *droplet = new Droplet();
     droplet->setPixmap((QPixmap(":/images/water.gif")).scaled(30, 30));
     addItem(droplet);

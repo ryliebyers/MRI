@@ -1,5 +1,7 @@
 #include "points.h"
 #include <QHBoxLayout>
+#include "globals.h"
+//#include "droplet.h"
 Points::Points(QObject *parent)
     : QObject{parent},  m_points(0)
 {
@@ -34,4 +36,5 @@ int Points::getPoints() const
 void Points::updatePointsLabel()
 {
     m_label->setText(QString("Points: %1").arg(m_points));
+
 }

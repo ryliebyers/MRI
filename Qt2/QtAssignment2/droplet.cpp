@@ -11,7 +11,8 @@
 #include "sound.h"
 #include "points.h"
 #include "globals.h"
-
+#include "QVBoxLayout"
+#include <QMediaPlayer>
 
 
 
@@ -21,6 +22,8 @@ Droplet::Droplet() {
     connect(timer, &QTimer::timeout, this, &Droplet::moveDroplet);
     timer->start(250);//speed
     speedUp();
+
+
 
 
 
@@ -45,19 +48,30 @@ void Droplet::moveDroplet() {
             //if same type where bucket is then remove droplet and returns
             if (typeid(*(colliding_items[i])) == typeid(Bucket)) {
                 sound->AddSplash();
-                totalPoints+=5;
+
+
+
+
+
+                totalPoints+=50;
                 DropsCaught += 1;
+                if(totalPoints >= 150){
+                    // Create a QGraphicsTextItem for "You Won"
+                    QGraphicsTextItem *youWonText = new QGraphicsTextItem("You Won");
 
-                // speedUp();
+                    // Set font and color
+                    QFont font("Arial", 80, QFont::Bold);
+                    youWonText->setFont(font);
+                    youWonText->setDefaultTextColor(Qt::green);
 
+                    // Center the text item
+                    QPointF centerPoint = QPointF(scene()->width() / 2 - youWonText->boundingRect().width() / 2,
+                                                  scene()->height() / 2 - youWonText->boundingRect().height() / 2);
+                    youWonText->setPos(centerPoint);
 
-                // Call the isWon method
-                if (m_points.isWon()) {
-                    qDebug() << "You won!";
-                } else {
-                    qDebug() << "You haven't won yet.";
+                    // Add the text item to the scene
+                    scene()->addItem(youWonText);
                 }
-
                 scene()->removeItem(this);
                 delete this;
                 return;
@@ -68,12 +82,21 @@ void Droplet::moveDroplet() {
     } else {
         //Out of window
         sound->AddBeep();
+
+
+
+
+
+
+
         totalPoints-=5;
         qDebug() << "Total points: " << totalPoints;
         scene()->removeItem(this);
         delete this;
     }
-    //delete sound;
+    delete sound;
+
+
 
 }
 
@@ -87,6 +110,7 @@ void Droplet::speedUp() {
 
 
     if (DropsCaught >= 5 && DropsCaught <= 9 ) {
+
         // x2
         if (timer->isActive()) {
             timer->stop(); // Stop the previous timer if active

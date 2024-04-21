@@ -6,6 +6,8 @@
 #include <QImage>
 #include <QKeyEvent>
 
+
+
 Bucket::Bucket() {scaleFactor = 1;}
 void Bucket::keyPressEvent(QKeyEvent *event) {
     qreal step = 50; // Step size for movement
@@ -29,6 +31,7 @@ void Bucket::keyPressEvent(QKeyEvent *event) {
         if (x() - step > sceneRect.left()) {
             setPos(x() - step, y());
         }
+
         // Restore original scale
         QPointF oldCenter = mapToScene(boundingRect().center()); // Previous center in scene coordinates
         setTransformOriginPoint(oldCenter); // Set the previous center as the transformation origin

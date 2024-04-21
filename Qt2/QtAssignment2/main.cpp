@@ -12,7 +12,7 @@
 #include "level2.h"
 #include "level3.h"
 #include "globals.h"
-
+#include <QAudioOutput>
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 

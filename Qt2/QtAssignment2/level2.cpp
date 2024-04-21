@@ -8,7 +8,7 @@
 #include "globals.h"
 
 
-Level2::Level2()
+Level2::Level2(const QString& userName, const QString& profilePicturePath)
 {
     // Set background image
     QImage backgroundImage(":/images/background.jpg");

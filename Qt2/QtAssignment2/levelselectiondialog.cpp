@@ -2,7 +2,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QTimer>
-
+#include "globals.h"
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QApplication>
@@ -91,16 +91,20 @@ LevelSelectionDialog::LevelSelectionDialog(QWidget *parent) : QDialog(parent) {
 
 void LevelSelectionDialog::startGameAtLevel1() {
     // Start the game at Level 1
+     level1Clicked = true;
+
     accept();
 }
 
 void LevelSelectionDialog::startGameAtLevel2() {
     // Start the game at Level 2
+     level2Clicked = true;
     accept();
 }
 
 void LevelSelectionDialog::startGameAtLevel3() {
     // Start the game at Level 3
+     level3Clicked = true;
     accept();
 }
 

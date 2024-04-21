@@ -11,7 +11,10 @@
 #include "signupui.h"
 #include "game1scene.h"
 #include <QGraphicsView>
-
+#include "globals.h"
+#include "level1.h"
+#include "level2.h"
+#include "level3.h"
 UserInfo::UserInfo(QWidget *parent) : QDialog(parent), ui(new Ui::SignUpUI) {
     //ui->setupUi(this);
 
@@ -214,8 +217,13 @@ void UserInfo::startGame() {
             m_fullName = firstName + " " + lastName;
             m_profilePicturePath = profilePicturePath;
 
+
+
+
+
+            if(level1Clicked == true){
             // Pass the username and profile picture path to the Game1Scene class
-            Game1Scene *scene1 = new Game1Scene(m_fullName, m_profilePicturePath);
+                Level1 *scene1 = new Level1(m_fullName, m_profilePicturePath);
 
             // Create view to visualize the scene
             QGraphicsView view(scene1);
@@ -223,6 +231,37 @@ void UserInfo::startGame() {
             view.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
             view.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
             view.show();
+            level1Clicked = false;
+            }
+
+
+            if(level2Clicked == true){
+                // Pass the username and profile picture path to the Game1Scene class
+                Level2 *scene1 = new Level2(m_fullName, m_profilePicturePath);
+
+                // Create view to visualize the scene
+                QGraphicsView view(scene1);
+                view.setFixedSize(910, 512);
+                view.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                view.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                view.show();
+                level2Clicked = false;
+            }
+            if(level3Clicked == true){
+                // Pass the username and profile picture path to the Game1Scene class
+                Level3 *scene1 = new Level3(m_fullName, m_profilePicturePath);
+
+                // Create view to visualize the scene
+                QGraphicsView view(scene1);
+                view.setFixedSize(910, 512);
+                view.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                view.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                view.show();
+                level3Clicked = false;
+            }
+
+
+
 
             return;
         }

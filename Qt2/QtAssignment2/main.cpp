@@ -8,6 +8,10 @@
 #include "userinfo.h"
 #include "historywindow.h"
 #include <QDateTime>
+#include "level1.h"
+#include "level2.h"
+#include "level3.h"
+#include "globals.h"
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
@@ -43,10 +47,17 @@ int main(int argc, char *argv[]) {
     // Close the file
     file.close();
 
-    // Create the scene with user information
-    Game1Scene *scene1 = new Game1Scene(firstName + " " + lastName, profilePicturePath);
+    // // Create the scene with user information
+    // Game1Scene *scene1 = new Game1Scene(firstName + " " + lastName, profilePicturePath);
+    // Create a widget to hold the profile picture, user name, and score
+    QWidget *bottomWidget = new QWidget();
+    QHBoxLayout *bottomLayout = new QHBoxLayout(bottomWidget);
 
+
+    if(level1Clicked == true){
     // Create view to visualize the scene
+    Level1 *scene1 = new Level1(firstName + " " + lastName, profilePicturePath);
+
     QGraphicsView *view = new QGraphicsView(scene1);
     view->setFixedSize(910, 512);
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -56,12 +67,107 @@ int main(int argc, char *argv[]) {
     QWidget *mainWidget = new QWidget();
     QVBoxLayout *mainLayout = new QVBoxLayout(mainWidget);
 
+
+
+    // Set the layout of the bottom widget
+    bottomWidget->setLayout(bottomLayout);
+
     // Add the view to the main layout
     mainLayout->addWidget(view);
+    // Add the bottom widget to the main layout
+    mainLayout->addWidget(bottomWidget);
 
-    // Create a widget to hold the profile picture, user name, and score
-    QWidget *bottomWidget = new QWidget();
-    QHBoxLayout *bottomLayout = new QHBoxLayout(bottomWidget);
+    // Set the main layout to the main widget
+    mainWidget->setLayout(mainLayout);
+
+    // Set the main widget as the central widget of the application
+    mainWidget->show();
+    level1Clicked = false;
+
+    }
+
+
+    if(level2Clicked == true){
+        // Create view to visualize the scene
+        Level2 *scene1 = new Level2(firstName + " " + lastName, profilePicturePath);
+
+        QGraphicsView *view = new QGraphicsView(scene1);
+        view->setFixedSize(910, 512);
+        view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+        // Create a QWidget to hold the view and additional widgets
+        QWidget *mainWidget = new QWidget();
+        QVBoxLayout *mainLayout = new QVBoxLayout(mainWidget);
+
+
+
+        // Set the layout of the bottom widget
+        bottomWidget->setLayout(bottomLayout);
+
+        // Add the view to the main layout
+        mainLayout->addWidget(view);
+        // Add the bottom widget to the main layout
+        mainLayout->addWidget(bottomWidget);
+
+        // Set the main layout to the main widget
+        mainWidget->setLayout(mainLayout);
+
+        // Set the main widget as the central widget of the application
+        mainWidget->show();
+        level2Clicked = false;
+
+    }
+
+
+    if(level3Clicked == true){
+        // Create view to visualize the scene
+        Level3 *scene1 = new Level3(firstName + " " + lastName, profilePicturePath);
+
+        QGraphicsView *view = new QGraphicsView(scene1);
+        view->setFixedSize(910, 512);
+        view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+        // Create a QWidget to hold the view and additional widgets
+        QWidget *mainWidget = new QWidget();
+        QVBoxLayout *mainLayout = new QVBoxLayout(mainWidget);
+
+
+
+        // Set the layout of the bottom widget
+        bottomWidget->setLayout(bottomLayout);
+
+        // Add the view to the main layout
+        mainLayout->addWidget(view);
+        // Add the bottom widget to the main layout
+        mainLayout->addWidget(bottomWidget);
+
+        // Set the main layout to the main widget
+        mainWidget->setLayout(mainLayout);
+
+        // Set the main widget as the central widget of the application
+        mainWidget->show();
+        level3Clicked = false;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // // Create a widget to hold the profile picture, user name, and score
+    // QWidget *bottomWidget = new QWidget();
+    // QHBoxLayout *bottomLayout = new QHBoxLayout(bottomWidget);
 
     // Create and add profile picture
     QPixmap profilePicture(profilePicturePath);
@@ -128,17 +234,17 @@ int main(int argc, char *argv[]) {
     bottomLayout->addWidget(viewHistoryButton);
     bottomLayout->addWidget(quitButton);
 
-    // Set the layout of the bottom widget
-    bottomWidget->setLayout(bottomLayout);
+    // // Set the layout of the bottom widget
+    // bottomWidget->setLayout(bottomLayout);
 
-    // Add the bottom widget to the main layout
-    mainLayout->addWidget(bottomWidget);
+    // // Add the bottom widget to the main layout
+    // mainLayout->addWidget(bottomWidget);
 
-    // Set the main layout to the main widget
-    mainWidget->setLayout(mainLayout);
+    // // Set the main layout to the main widget
+    // mainWidget->setLayout(mainLayout);
 
-    // Set the main widget as the central widget of the application
-    mainWidget->show();
+    // // Set the main widget as the central widget of the application
+    // mainWidget->show();
 
     // Start the application event loop
     return a.exec();

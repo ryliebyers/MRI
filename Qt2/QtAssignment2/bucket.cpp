@@ -8,7 +8,7 @@
 
 Bucket::Bucket() {scaleFactor = 1;}
 void Bucket::keyPressEvent(QKeyEvent *event) {
-    qreal step = 10; // Step size for movement
+    qreal step = 50; // Step size for movement
     // Get the current bounding rect of the scene
     QRectF sceneRect = scene()->sceneRect();
     if (event->key() == Qt::Key_Right) {

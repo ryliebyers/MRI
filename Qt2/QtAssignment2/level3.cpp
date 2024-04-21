@@ -7,7 +7,7 @@
 #include "globals.h"
 
 
-Level3::Level3()
+Level3::Level3(const QString& userName, const QString& profilePicturePath)
 {
     // Set background image
     QImage backgroundImage(":/images/background.jpg");
@@ -33,7 +33,7 @@ Level3::Level3()
     // Create timer for droplets
     timerDrop = new QTimer(this);
     connect(timerDrop, &QTimer::timeout, this, &Level3::addDroplet);
-    timerDrop->start(200);
+    timerDrop->start(100);
 
     // Create and add clouds
     Cloud *cloud1 = new Cloud();

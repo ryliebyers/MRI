@@ -12,7 +12,7 @@ class Level1 : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    Level1();
+    Level1(const QString& userName, const QString& profilePicturePath);
     ~Level1();
 private:
     Bucket *bucket;

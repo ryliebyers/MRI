@@ -57,7 +57,7 @@ void Droplet::moveDroplet() {
                 DropsCaught += 1;
                 if(totalPoints >= 150){
                     // Create a QGraphicsTextItem for "You Won"
-                    QGraphicsTextItem *youWonText = new QGraphicsTextItem("You Won");
+                    QGraphicsTextItem *youWonText = new QGraphicsTextItem("You Won!");
 
                     // Set font and color
                     QFont font("Arial", 80, QFont::Bold);

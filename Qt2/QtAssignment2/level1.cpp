@@ -6,8 +6,11 @@
 #include "droplet.h"
 #include "globals.h"
 #include <QVBoxLayout>
+#include <QAudioOutput>
+
 Level1::Level1(const QString& userName, const QString& profilePicturePath)
 {
+
 
     // Set background image
     QImage backgroundImage(":/images/background.jpg");

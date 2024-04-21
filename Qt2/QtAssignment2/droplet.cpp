@@ -32,7 +32,7 @@ Droplet::~Droplet() {
 
 //method that moves droplets
 void Droplet::moveDroplet() {
-    Sound *sound = new Sound;
+    //Sound *sound = new Sound;
     //Sound sound;
 
     //if pos is within screen then move droplet
@@ -44,11 +44,11 @@ void Droplet::moveDroplet() {
         for (int i = 0; i < colliding_items.size(); ++i) {
             //if same type where bucket is then remove droplet and returns
             if (typeid(*(colliding_items[i])) == typeid(Bucket)) {
-                sound->AddSplash();
+                //sound->AddSplash();
                 totalPoints+=5;
                 DropsCaught += 1;
 
-               // speedUp();
+                // speedUp();
 
 
                 // Call the isWon method
@@ -67,13 +67,13 @@ void Droplet::moveDroplet() {
 
     } else {
         //Out of window
-        sound->AddBeep();
+        //sound->AddBeep();
         totalPoints-=5;
         qDebug() << "Total points: " << totalPoints;
         scene()->removeItem(this);
         delete this;
     }
-     delete sound;
+    //delete sound;
 
 }
 

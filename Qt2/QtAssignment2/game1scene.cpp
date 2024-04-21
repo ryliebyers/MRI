@@ -1,17 +1,15 @@
-//Author: Mina Akbari
-//Assignment: Qt2
-//Course: CS6015
-//Date: April 15, 2024
-
 #include "game1scene.h"
 #include "cloud.h"
 #include <QBrush>
 #include <QImage>
 #include <QKeyEvent>
+#include <QLabel>
 #include "droplet.h"
 #include "globals.h"
+#include <QVBoxLayout>
 
-Game1Scene::Game1Scene() {
+
+Game1Scene::Game1Scene(const QString& userName, const QString& profilePicturePath) {
     // Set background image
     QImage backgroundImage(":/images/background.jpg");
     if (backgroundImage.isNull()) {
@@ -76,21 +74,6 @@ Game1Scene::~Game1Scene() {
     delete bucket;
 }
 
-
-
-
-// void Game1Scene::updatePointsDisplay() {
-//     if (!pointsTextItem) {
-//         pointsTextItem = new QGraphicsTextItem();
-//         addItem(pointsTextItem);
-//         pointsTextItem->setParentItem(pointsRect);
-//         QPointF textPos = pointsRect->boundingRect().center() - pointsTextItem->boundingRect().center();
-//         pointsTextItem->setPos(textPos);
-//     }
-
-//     QString str = QString::number(totalPoints);
-//     pointsTextItem->setPlainText(str);
-// }
 void Game1Scene::updatePointsDisplay() {
     // Update or create the text items for displaying score and drops caught
     if (!pointsTextItem) {
@@ -124,10 +107,6 @@ void Game1Scene::updatePointsDisplay() {
 }
 
 
-
-
-
-
 void Game1Scene::addDroplet() {
     // Create droplet
     updatePointsDisplay();
@@ -143,6 +122,7 @@ void Game1Scene::addDroplet() {
     });
 
 }
+
 
 
 

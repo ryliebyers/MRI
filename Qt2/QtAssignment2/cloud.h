@@ -1,8 +1,3 @@
-//Author: Mina Akbari
-//Assignment: Qt2
-//Course: CS6015
-//Date: April 15, 2024
-
 #ifndef CLOUD_H
 #define CLOUD_H
 #include <QObject>
@@ -26,3 +21,5 @@ private:
     QTimer *timer;
 };
 #endif // CLOUD_H
+
+

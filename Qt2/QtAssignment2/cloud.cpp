@@ -1,7 +1,3 @@
-//Author: Mina Akbari
-//Assignment: Qt2
-//Course: CS6015
-//Date: April 15, 2024
 
 #include "cloud.h"
 

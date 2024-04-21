@@ -1,16 +1,20 @@
-QT += \
-    widgets \
-    multimedia
-
+QT+=widgets
 SOURCES += \
     bucket.cpp \
     cloud.cpp \
     droplet.cpp \
     game1scene.cpp \
     globals.cpp \
+    historywindow.cpp \
+    level1.cpp \
+    level2.cpp \
+    level3.cpp \
+    levelselectiondialog.cpp \
     main.cpp \
     points.cpp \
-    sound.cpp
+    signupui.cpp \
+    sound.cpp \
+    userinfo.cpp
 
 HEADERS += \
     bucket.h \
@@ -18,11 +22,23 @@ HEADERS += \
     droplet.h \
     game1scene.h \
     globals.h \
+    historywindow.h \
+    level1.h \
+    level2.h \
+    level3.h \
+    levelselectiondialog.h \
     points.h \
-    sound.h
-
+    signupui.h \
+    sound.h \
+    userinfo.h
 RESOURCES += \
     resources.qrc
 
 DISTFILES +=
+
+FORMS += \
+    signupui.ui
+
+
+
 

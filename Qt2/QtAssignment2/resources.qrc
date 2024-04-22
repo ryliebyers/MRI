@@ -8,7 +8,6 @@
         <file>images/questionMark.png</file>
         <file>images/loginDroplet.gif</file>
         <file>images/questionMark.jpeg</file>
-        <file>images/somebody.txt</file>
         <file>profile_pictures/d7272cb0a91d-1.jpg</file>
         <file>profile_pictures/912e19f87de4-1.jpg</file>
         <file>profile_pictures/10df6f39e685-1.jpg</file>
@@ -77,5 +76,6 @@
         <file>sounds/Splash.wav</file>
         <file>images/birthdayEmoji.jpeg</file>
         <file>images/birthdayEmoji.gif</file>
+        <file>images/default.jpeg</file>
     </qresource>
 </RCC>

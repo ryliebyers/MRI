@@ -25,4 +25,10 @@ Date of Birth: 1301-04-21
 Gender: Female
 Username: rb
 Password: 12345678
-Profile Picture Path: /Users/minaakbari/6015/Qt2/QtAssignment2/profile_pictures/595706784222-1.jpg
+Profile Picture Path: /Users/minaakbari/6015/Qt2/QtAssignment2/profile_pictures/595706784222-1.jpgFirst Name: ray
+Last Name: ding
+Date of Birth: 1988-01-01
+Gender: Male
+Username: xrayding
+Password: 123456789
+Profile Picture Path: /Users/msd/Desktop/myGithubRepo/MRI/Qt2/QtAssignment2/profile_pictures/785cbf442598-1.jpg

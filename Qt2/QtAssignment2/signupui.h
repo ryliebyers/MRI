@@ -7,7 +7,7 @@ namespace Ui {
 class SignUpUI;
 }
 
-class SignUpUI : public QWidget
+class SignUpUI : public QDialog
 {
     Q_OBJECT
 
@@ -18,14 +18,15 @@ public:
 private slots:
     void on_submitBtn_clicked();
 
-    void on_chooseBtn_clicked();
 
 private:
     Ui::SignUpUI *ui;
     QString profilePicturePath;
+    void populateImageSelector();
+    bool isValidPassword(const QString &password);
+    bool usernameExists(const QString &username, const QString &filePath);
 
-signals:
-    void signUpCompleted();
+
 };
 
 #endif // SIGNUPUI_H

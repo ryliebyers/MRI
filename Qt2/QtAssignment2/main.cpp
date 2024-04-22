@@ -14,6 +14,7 @@
 #include "level3.h"
 #include "globals.h"
 #include <QAudioOutput>
+#include <QDir>
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
@@ -26,7 +27,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Open the file for reading
-    QFile file(":/images/somebody.txt");
+    QFile file(QDir::homePath() + "/userInfo.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Failed to open file for reading.";
         return 0;

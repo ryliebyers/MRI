@@ -24,7 +24,7 @@ LevelSelectionDialog::LevelSelectionDialog(QWidget *parent) : QDialog(parent) {
 
     // Create level buttons and question mark buttons for each level
     QHBoxLayout *level1Layout = new QHBoxLayout; // Create a horizontal layout for level 1
-    level1Button = new QPushButton("Level 1", this);
+    level1Button = new QPushButton("Easy", this);
     level1Button->setStyleSheet("QPushButton {"
                                 "background-color: darkblue;"
                                 "color: white;"
@@ -40,8 +40,8 @@ LevelSelectionDialog::LevelSelectionDialog(QWidget *parent) : QDialog(parent) {
                                 "background-color: blue;"
                                 "}");
     connect(level1Button, &QPushButton::clicked, this, &LevelSelectionDialog::startGameAtLevel1);
-    QPushButton *level1QuestionMarkButton = createQuestionMarkButton("This level is the easiest!");
-    level1Layout->addWidget(level1QuestionMarkButton); // Add the question mark button to the layout
+    // QPushButton *level1QuestionMarkButton = createQuestionMarkButton("This level is the easiest!");
+    // level1Layout->addWidget(level1QuestionMarkButton); // Add the question mark button to the layout
     level1Layout->addWidget(level1Button); // Add the level button to the layout
     mainLayout->addLayout(level1Layout); // Add the horizontal layout to the main vertical layout
 
@@ -49,7 +49,7 @@ LevelSelectionDialog::LevelSelectionDialog(QWidget *parent) : QDialog(parent) {
 
     // Repeat the same process for level 2
     QHBoxLayout *level2Layout = new QHBoxLayout; // Create a horizontal layout for level 2
-    level2Button = new QPushButton("Level 2", this);
+    level2Button = new QPushButton("Medium", this);
     level2Button->setStyleSheet("QPushButton {"
                                 "background-color: darkorange;"
                                 "color: white;"
@@ -65,8 +65,8 @@ LevelSelectionDialog::LevelSelectionDialog(QWidget *parent) : QDialog(parent) {
                                 "background-color: orange;"
                                 "}");
     connect(level2Button, &QPushButton::clicked, this, &LevelSelectionDialog::startGameAtLevel2);
-    QPushButton *level2QuestionMarkButton = createQuestionMarkButton("This level is medium!");
-    level2Layout->addWidget(level2QuestionMarkButton);
+    // QPushButton *level2QuestionMarkButton = createQuestionMarkButton("This level is medium!");
+    // level2Layout->addWidget(level2QuestionMarkButton);
     level2Layout->addWidget(level2Button);
     mainLayout->addLayout(level2Layout);
 
@@ -74,7 +74,7 @@ LevelSelectionDialog::LevelSelectionDialog(QWidget *parent) : QDialog(parent) {
 
     // Repeat the same process for level 3
     QHBoxLayout *level3Layout = new QHBoxLayout; // Create a horizontal layout for level 3
-    level3Button = new QPushButton("Level 3", this);
+    level3Button = new QPushButton("Hard", this);
     level3Button->setStyleSheet("QPushButton {"
                                 "background-color: darkgreen;"
                                 "color: white;"
@@ -90,8 +90,8 @@ LevelSelectionDialog::LevelSelectionDialog(QWidget *parent) : QDialog(parent) {
                                 "background-color: green;"
                                 "}");
     connect(level3Button, &QPushButton::clicked, this, &LevelSelectionDialog::startGameAtLevel3);
-    QPushButton *level3QuestionMarkButton = createQuestionMarkButton("This level is the hardest!");
-    level3Layout->addWidget(level3QuestionMarkButton);
+    // QPushButton *level3QuestionMarkButton = createQuestionMarkButton("This level is the hardest!");
+    // level3Layout->addWidget(level3QuestionMarkButton);
     level3Layout->addWidget(level3Button);
 
     mainLayout->addLayout(level3Layout);
@@ -143,16 +143,16 @@ void LevelSelectionDialog::startGameAtLevel3() {
 
 //===================================================== Question Mark Tooltips  =============================================//
 
-QPushButton* LevelSelectionDialog::createQuestionMarkButton(const QString& tooltipText) {
-    QPushButton *questionMarkButton = new QPushButton(this);
-    questionMarkButton->setFixedSize(20, 20);
-    questionMarkButton->setIcon(QIcon(":/images/questionMark.png"));
-    questionMarkButton->setIconSize(QSize(20, 20));
-    questionMarkButton->setFlat(true);
-    questionMarkButton->setToolTip(tooltipText);
+// QPushButton* LevelSelectionDialog::createQuestionMarkButton(const QString& tooltipText) {
+//     QPushButton *questionMarkButton = new QPushButton(this);
+//     questionMarkButton->setFixedSize(20, 20);
+//     questionMarkButton->setIcon(QIcon(":/images/questionMark.png"));
+//     questionMarkButton->setIconSize(QSize(20, 20));
+//     questionMarkButton->setFlat(true);
+//     questionMarkButton->setToolTip(tooltipText);
 
-    return questionMarkButton;
-}
+//     return questionMarkButton;
+// }
 //===================================================== Display Instructions =============================================//
 void LevelSelectionDialog::displayInstructions() {
     // Define the instructions text

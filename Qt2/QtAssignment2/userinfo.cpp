@@ -201,7 +201,7 @@ void UserInfo::startGame() {
         QString lastName = in.readLine().split(":").at(1).trimmed();
         QString dateOfBirth = in.readLine().split(":").at(1).trimmed();
         QString gender = in.readLine().split(":").at(1).trimmed();
-        QString username = in.readLine().split(":").at(1).trimmed();
+         USERNAME = in.readLine().split(":").at(1).trimmed();
         QString password = in.readLine().split(":").at(1).trimmed();
         // QString profilePicturePath = in.readLine().split(":").at(1).trimmed();
         QString line = in.readLine();
@@ -213,7 +213,7 @@ void UserInfo::startGame() {
         }
 
         // Check if entered username and password match
-        if (username == usernameLineEdit->text() && password == passwordLineEdit->text()) {
+        if (USERNAME == usernameLineEdit->text() && password == passwordLineEdit->text()) {
             isSignedInUser = true;
             // Close the dialog if the credentials are correct
             accept();

@@ -14,21 +14,15 @@ class HistoryWindow : public QWidget
 {
     Q_OBJECT
 public:
-    explicit HistoryWindow(QWidget *parent = nullptr);
-
+    explicit HistoryWindow();
+  void  showScoreHistoryPopup();
+    void recordScore();
 signals:
 
 public slots:
 
 private:
-    QLabel *titleLabel;
-    QLabel *userScoreLabel;
-    QLabel *bestScoreLabel;
-    QVBoxLayout *layout;
 
-    void populateScores();
-    int getUserScore();
-    int getBestScore();
 };
 
 #endif // HISTORYWINDOW_H

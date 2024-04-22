@@ -189,8 +189,8 @@ int main(int argc, char *argv[]) {
         // Connect the button's clicked signal to a lambda function
         QObject::connect(viewHistoryButton, &QPushButton::clicked, [&]() {
             // Create and display the history window
-            HistoryWindow *historyWindow = new HistoryWindow();
-            historyWindow->show();
+          //  HistoryWindow *historyWindow = new HistoryWindow();
+          //  historyWindow->show();
         });
 
         // Add the "View History" button to the layout

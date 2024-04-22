@@ -11,4 +11,5 @@ extern bool level2Clicked;
 extern bool level3Clicked;
 extern bool isQuit;
 extern bool isWon;
+extern QString USERNAME;
 #endif // GLOBALS_H

@@ -5,109 +5,87 @@
 #include "gamehistorymanager.h"
 #include <QMessageBox>
 #include "globals.h"
-HistoryWindow::HistoryWindow(QWidget *parent) : QWidget(parent)
+#include <QFile>
+#include <QTextStream>
+#include <QMessageBox>
+#include <QDir>
+
+HistoryWindow::HistoryWindow()
 {
-    titleLabel = new QLabel("Game History");
-    userScoreLabel = new QLabel("Your Score: ");
-    bestScoreLabel = new QLabel("Best Score: ");
-    layout = new QVBoxLayout(this);
-
-    layout->addWidget(titleLabel);
-    layout->addWidget(userScoreLabel);
-    layout->addWidget(bestScoreLabel);
-
-    populateScores();
-
-    setLayout(layout);
-}
-
-void HistoryWindow::populateScores() {
-    QMultiMap<int, QString> scores; // Using QMultiMap to store multiple values for the same key
-    QFile file("user_score.txt");
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QTextStream in(&file);
-        while (!in.atEnd()) {
-            QString line = in.readLine();
-            QStringList parts = line.split(" ");
-            if (parts.length() == 2) {
-                int score = parts[1].toInt();
-                QString date = parts[0];
-                scores.insert(score, date); // Using insert to allow multiple values for the same key
-            }
-        }
-        file.close();
-    } else {
-        qDebug() << "Failed to open file for reading user score.";
-    }
-
-    // Displaying scores in descending order
-    QList<int> scoreKeys = scores.uniqueKeys(); // Getting unique keys
-    std::sort(scoreKeys.begin(), scoreKeys.end(), std::greater<int>()); // Sorting keys in descending order
-    if (!scoreKeys.isEmpty()) {
-        int bestScore = scoreKeys.first(); // Highest score
-        QString bestScoreDate = scores.value(bestScore); // Date of highest score
-
-        if(totalPoints <= 150 && isWon){
-        userScoreLabel->setText("Your Score: " + QString::number(totalPoints));
-        }
-        bestScoreLabel->setText("Best Score: " + QString::number(bestScore) + " achieved on " + bestScoreDate);
-
-        // Display all scores in descending order
-        QString allScores;
-        foreach (int score, scoreKeys) {
-            QList<QString> dates = scores.values(score); // Getting all dates for the current score
-            foreach (const QString &date, dates) {
-                allScores += "Score: " + QString::number(score) + " Date: " + date + "\n";
-            }
-        }
-        QMessageBox::information(this, "Game History", "Your Scores:\n" + allScores);
-    } else {
-        userScoreLabel->setText("Your Score: 0");
-        bestScoreLabel->setText("Best Score: 0");
-        QMessageBox::information(this, "Game History", "No scores found.");
-    }
+    recordScore(); // Call recordScore in constructor
+    showScoreHistoryPopup(); // Display score history popup
 }
 
 
-int HistoryWindow::getUserScore()
-{
-    // Retrieve the user's score from a file or database
-    QFile file("user_score.txt");
+void HistoryWindow::showScoreHistoryPopup() {
+    QString filePath = QDir::homePath() + "/" + USERNAME + ".txt";
+    QFile file(filePath);
+
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "Failed to open file for reading user score.";
-        return 0;
+        QMessageBox::critical(this, "Error", "Failed to open score history file.");
+        return;
     }
 
+    // Read scores from file
     QTextStream in(&file);
-    int score = 0;
-    if (!in.atEnd()) {
-        score = in.readLine().toInt();
+    QStringList scores;
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        scores.append(line);
     }
+    file.close();
+
+    if (scores.isEmpty()) {
+        QMessageBox::information(this, "Score History", "No scores found for this user.");
+        return;
+    }
+
+    // Find highest score
+    int highestScore = 0;
+    foreach(const QString& score, scores) {
+        int currentScore = score.split(":").last().toInt();
+        highestScore = qMax(highestScore, currentScore);
+    }
+
+    // Display scores in a popup
+    QString message = "Score History for " + USERNAME + ":\n";
+    foreach(const QString& score, scores) {
+        message += score + "\n";
+    }
+    message += "\nHighest Score: " + QString::number(highestScore);
+
+  //  QMessageBox::information(this, "Score History", message);
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Score History");
+    msgBox.setText(message);
+    msgBox.setStandardButtons(QMessageBox::Ok);
+    msgBox.setDefaultButton(QMessageBox::Ok);
+    msgBox.exec();
+
+    // Close the HistoryWindow when OK is clicked
+    close();
+}
+
+
+void HistoryWindow::recordScore() {
+    if ((isWon && totalPoints <= 150) || &QApplication::quit) {
+
+
+    QString filePath = QDir::homePath() + "/" + USERNAME + ".txt";
+    QFile file(filePath);
+
+    if (!file.open(QIODevice::Append | QIODevice::Text)) {
+        QMessageBox::critical(this, "Error", "Failed to open score history file.");
+        return;
+    }
+
+    // Get current date and time
+    QDateTime dateTime = QDateTime::currentDateTime();
+
+    // Write score to file
+    QTextStream out(&file);
+    out << dateTime.toString(Qt::ISODate) << " - Total Points: " << totalPoints << "\n";
 
     file.close();
-    return score;
-}
-
-//Do a file per username
-// score Score date
-//save score when quit game
-//have it write out.
-//when displaying have it readin the file and find high score
-int HistoryWindow::getBestScore()
-{
-    // Retrieve the global best score from a file or database
-    QFile file("best_score.txt");
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "Failed to open file for reading best score.";
-        return 0;
     }
-
-    QTextStream in(&file);
-    int score = 0;
-    if (!in.atEnd()) {
-        score = in.readLine().toInt();
-    }
-
-    file.close();
-    return score;
 }

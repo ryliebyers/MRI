@@ -9,3 +9,4 @@ bool level2Clicked = false;
 bool level3Clicked = false;
 bool isQuit = false;
 bool isWon = false;
+QString USERNAME;

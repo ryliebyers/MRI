@@ -1,10 +1,11 @@
-QT+=widgets \
+QT+=widgets\
     multimedia
 SOURCES += \
     bucket.cpp \
     cloud.cpp \
     droplet.cpp \
     game1scene.cpp \
+    gamehistorymanager.cpp \
     globals.cpp \
     historywindow.cpp \
     level1.cpp \
@@ -22,6 +23,7 @@ HEADERS += \
     cloud.h \
     droplet.h \
     game1scene.h \
+    gamehistorymanager.h \
     globals.h \
     historywindow.h \
     level1.h \

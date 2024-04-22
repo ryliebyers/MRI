@@ -1,4 +1,3 @@
-
 #include "sound.h"
 #include <QtMultimedia/QMediaPlayer>
 #include <QMediaPlayer>
@@ -15,23 +14,13 @@ Sound::Sound(QObject *parent)
 
 void Sound::AddSplash() {
     QMediaPlayer *splash = new QMediaPlayer;
-   QAudioOutput *audioOutput = new QAudioOutput;
+    QAudioOutput *audioOutput = new QAudioOutput;
     splash->setAudioOutput(audioOutput);
     audioOutput->setVolume(50);
     splash->setSource(QUrl("qrc:/sounds/Splash.wav"));
 
     splash->play();
 }
-
-
-
-
-
-
-
-
-
-
 
 void Sound::AddBeep() {
     QMediaPlayer *beep = new QMediaPlayer;

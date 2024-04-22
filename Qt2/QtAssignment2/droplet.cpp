@@ -1,8 +1,3 @@
-//Author: Mina Akbari
-//Assignment: Qt2
-//Course: CS6015
-//Date: April 15, 2024
-
 #include "droplet.h"
 #include <QTimer>
 #include <QRandomGenerator>
@@ -22,11 +17,6 @@ Droplet::Droplet() {
     connect(timer, &QTimer::timeout, this, &Droplet::moveDroplet);
     timer->start(250);//speed
     speedUp();
-
-
-
-
-
 }
 
 Droplet::~Droplet() {
@@ -36,7 +26,7 @@ Droplet::~Droplet() {
 //method that moves droplets
 void Droplet::moveDroplet() {
     Sound *sound = new Sound;
-    //Sound sound;
+
 
     //if pos is within screen then move droplet
     if (scene() && pos().y() < scene()->height()) {
@@ -48,13 +38,9 @@ void Droplet::moveDroplet() {
             //if same type where bucket is then remove droplet and returns
             if (typeid(*(colliding_items[i])) == typeid(Bucket)) {
                 sound->AddSplash();
-
-
-
-
-
                 totalPoints+=50;
                 DropsCaught += 1;
+
                 if(totalPoints >= 150){
                     // Create a QGraphicsTextItem for "You Won"
                     QGraphicsTextItem *youWonText = new QGraphicsTextItem("You Won!");
@@ -72,6 +58,7 @@ void Droplet::moveDroplet() {
                     // Add the text item to the scene
                     scene()->addItem(youWonText);
                 }
+
                 scene()->removeItem(this);
                 delete this;
                 return;
@@ -82,21 +69,12 @@ void Droplet::moveDroplet() {
     } else {
         //Out of window
         sound->AddBeep();
-
-
-
-
-
-
-
         totalPoints-=5;
         qDebug() << "Total points: " << totalPoints;
         scene()->removeItem(this);
         delete this;
     }
     delete sound;
-
-
 
 }
 
@@ -144,6 +122,12 @@ void Droplet::speedUp() {
         timer->start(250/16);
     }
 }
+
+
+
+
+
+
 
 
 

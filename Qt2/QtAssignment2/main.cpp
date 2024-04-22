@@ -1,9 +1,10 @@
-
 #include <QApplication>
 #include <QGraphicsView>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QFile>
+#include <QTextStream>
+#include <QDebug>
 #include "game1scene.h"
 #include "userinfo.h"
 #include "historywindow.h"
@@ -13,6 +14,7 @@
 #include "level3.h"
 #include "globals.h"
 #include <QAudioOutput>
+
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
@@ -30,66 +32,92 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    // Read the user information from the file
-    QTextStream in(&file);
+    // Retrieve signed-in user information from the UserInfo dialog
+    QString fullName = userInfoDialog.getSignedInFullName();
+    QString profilePicturePath = userInfoDialog.getSignedInProfilePicturePath();
+    QString dateOfBirth = userInfoDialog.getDateOfBirth();
 
-    QString firstName, lastName, dateOfBirth, gender, username, password, profilePicturePath;
-    while (!in.atEnd()) {
-        firstName = in.readLine().split(":").at(1).trimmed();
-        lastName = in.readLine().split(":").at(1).trimmed();
-        dateOfBirth = in.readLine().split(":").at(1).trimmed();
-        gender = in.readLine().split(":").at(1).trimmed();
-        username = in.readLine().split(":").at(1).trimmed();
-        password = in.readLine().split(":").at(1).trimmed();
-        profilePicturePath = in.readLine().split(":").at(1).trimmed();
-    }
+    // // Read the user information from the file
+    // QTextStream in(&file);
 
-    // Close the file
-    file.close();
+    // QString firstName, lastName, dateOfBirth, gender, username, password, profilePicturePath;
+    // while (!in.atEnd()) {
+    //     firstName = in.readLine().split(":").at(1).trimmed();
+    //     lastName = in.readLine().split(":").at(1).trimmed();
+    //     dateOfBirth = in.readLine().split(":").at(1).trimmed();
+    //     gender = in.readLine().split(":").at(1).trimmed();
+    //     username = in.readLine().split(":").at(1).trimmed();
+    //     password = in.readLine().split(":").at(1).trimmed();
+    //     profilePicturePath = in.readLine().split(":").at(1).trimmed();
+    // }
 
-    // // Create the scene with user information
-    // Game1Scene *scene1 = new Game1Scene(firstName + " " + lastName, profilePicturePath);
+    // // Close the file
+    // file.close();
+
     // Create a widget to hold the profile picture, user name, and score
     QWidget *bottomWidget = new QWidget();
     QHBoxLayout *bottomLayout = new QHBoxLayout(bottomWidget);
 
 
+
+
+
+    // // Create the scene with user information
+    // Game1Scene *scene1 = new Game1Scene(fullName, profilePicturePath);
+
+    // // Create view to visualize the scene
+    // QGraphicsView *view = new QGraphicsView(scene1);
+    // view->setFixedSize(910, 512);
+    // view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    // view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    // // Create a QWidget to hold the view and additional widgets
+    // QWidget *mainWidget = new QWidget();
+    // QVBoxLayout *mainLayout = new QVBoxLayout(mainWidget);
+
+    // // Add the view to the main layout
+    // mainLayout->addWidget(view);
+
+
+
+
+
     if(level1Clicked == true){
-    // Create view to visualize the scene
-    Level1 *scene1 = new Level1(firstName + " " + lastName, profilePicturePath);
+        // Create view to visualize the scene
+        Level1 *scene1 = new Level1(fullName, profilePicturePath);
 
-    QGraphicsView *view = new QGraphicsView(scene1);
-    view->setFixedSize(910, 512);
-    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        QGraphicsView *view = new QGraphicsView(scene1);
+        view->setFixedSize(910, 512);
+        view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    // Create a QWidget to hold the view and additional widgets
-    QWidget *mainWidget = new QWidget();
-    QVBoxLayout *mainLayout = new QVBoxLayout(mainWidget);
+        // Create a QWidget to hold the view and additional widgets
+        QWidget *mainWidget = new QWidget();
+        QVBoxLayout *mainLayout = new QVBoxLayout(mainWidget);
 
 
 
-    // Set the layout of the bottom widget
-    bottomWidget->setLayout(bottomLayout);
+        // Set the layout of the bottom widget
+        bottomWidget->setLayout(bottomLayout);
 
-    // Add the view to the main layout
-    mainLayout->addWidget(view);
-    // Add the bottom widget to the main layout
-    mainLayout->addWidget(bottomWidget);
+        // Add the view to the main layout
+        mainLayout->addWidget(view);
+        // Add the bottom widget to the main layout
+        mainLayout->addWidget(bottomWidget);
 
-    // Set the main layout to the main widget
-    mainWidget->setLayout(mainLayout);
+        // Set the main layout to the main widget
+        mainWidget->setLayout(mainLayout);
 
-    // Set the main widget as the central widget of the application
-    mainWidget->show();
-    level1Clicked = false;
+        // Set the main widget as the central widget of the application
+        mainWidget->show();
+        level1Clicked = false;
 
     }
 
 
     if(level2Clicked == true){
         // Create view to visualize the scene
-        Level2 *scene1 = new Level2(firstName + " " + lastName, profilePicturePath);
+        Level2 *scene1 = new Level2(fullName, profilePicturePath);
 
         QGraphicsView *view = new QGraphicsView(scene1);
         view->setFixedSize(910, 512);
@@ -122,7 +150,7 @@ int main(int argc, char *argv[]) {
 
     if(level3Clicked == true){
         // Create view to visualize the scene
-        Level3 *scene1 = new Level3(firstName + " " + lastName, profilePicturePath);
+        Level3 *scene1 = new Level3(fullName, profilePicturePath);
 
         QGraphicsView *view = new QGraphicsView(scene1);
         view->setFixedSize(910, 512);
@@ -154,29 +182,14 @@ int main(int argc, char *argv[]) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    // // Create a widget to hold the profile picture, user name, and score
-    // QWidget *bottomWidget = new QWidget();
-    // QHBoxLayout *bottomLayout = new QHBoxLayout(bottomWidget);
-
     // Create and add profile picture
     QPixmap profilePicture(profilePicturePath);
     QLabel *profilePictureLabel = new QLabel();
-    profilePictureLabel->setPixmap(profilePicture.scaled(30, 30));
+    profilePictureLabel->setPixmap(profilePicture.scaled(45, 45));
     bottomLayout->addWidget(profilePictureLabel);
-
     // Add user name label
-    QLabel *userNameLabel = new QLabel(firstName + " " + lastName);
+    QLabel *userNameLabel = new QLabel(fullName);
+    userNameLabel->setStyleSheet("color: back; font-size: 14px; font-weight: bold;");
     bottomLayout->addWidget(userNameLabel);
 
     // Add date label
@@ -184,13 +197,46 @@ int main(int argc, char *argv[]) {
     QDateTime currentDateTime = QDateTime::currentDateTime();
     QString formattedDate = currentDateTime.toString("ddd MMM d yyyy");
     dateLabel->setText(formattedDate);
-    dateLabel->setStyleSheet("color: gray; font-size: 12px;"); // Style the date label
+    dateLabel->setStyleSheet("color: black; font-size: 14px; font-weight: bold;");
     bottomLayout->addWidget(dateLabel);
 
 
-    // Create buttons
-    // Create buttons
+    // Check if user is signed in
+    if (userInfoDialog.isSignedInUser == true) { // Use '==' for comparison, not '='
+        // Create "View History" button
+        QPushButton *viewHistoryButton = new QPushButton("View History");
+        // Set style sheet for the button
+        viewHistoryButton->setStyleSheet("QPushButton {"
+                                         "background-color: darkgreen;"
+                                         "color: white;"
+                                         "border-style: outset;"
+                                         "border-width: 2px;"
+                                         "border-radius: 10px;"
+                                         "border-color: beige;"
+                                         "font: bold 14px;"
+                                         "min-width: 10em;"
+                                         "padding: 6px;"
+                                         "}"
+                                         "QPushButton:hover {"
+                                         "background-color: green;"
+                                         "}");
+
+        // Connect the button's clicked signal to a lambda function
+        QObject::connect(viewHistoryButton, &QPushButton::clicked, [&]() {
+            // Create and display the history window
+            HistoryWindow *historyWindow = new HistoryWindow();
+            historyWindow->show();
+        });
+
+        // Add the "View History" button to the layout
+        bottomLayout->addWidget(viewHistoryButton);
+    }
+
+
+
+    // Create "Quit" button
     QPushButton *quitButton = new QPushButton("Quit");
+    // Set style sheet for the button
     quitButton->setStyleSheet("QPushButton {"
                               "background-color: blue;"
                               "color: white;"
@@ -205,52 +251,25 @@ int main(int argc, char *argv[]) {
                               "QPushButton:hover {"
                               "background-color: darkblue;"
                               "}");
-    QPushButton *viewHistoryButton = new QPushButton("View History");
-    viewHistoryButton->setStyleSheet("QPushButton {"
-                                     "background-color: darkgreen;"
-                                     "color: white;"
-                                     "border-style: outset;"
-                                     "border-width: 2px;"
-                                     "border-radius: 10px;"
-                                     "border-color: beige;"
-                                     "font: bold 14px;"
-                                     "min-width: 10em;"
-                                     "padding: 6px;"
-                                     "}"
-                                     "QPushButton:hover {"
-                                     "background-color: green;"
-                                     "}");
 
-
-    // Connect signals and slots for buttons
+    // Connect the "Quit" button's clicked signal to QApplication::quit
     QObject::connect(quitButton, &QPushButton::clicked, &a, &QApplication::quit);
-    QObject::connect(viewHistoryButton, &QPushButton::clicked, [&]() {
-        // Create and display the history window
-        HistoryWindow *historyWindow = new HistoryWindow();
-        historyWindow->show();
-    });
 
-    // Add buttons to the layout
-    bottomLayout->addWidget(viewHistoryButton);
+    // Add the "Quit" button to the layout
     bottomLayout->addWidget(quitButton);
 
-    // // Set the layout of the bottom widget
-    // bottomWidget->setLayout(bottomLayout);
+    // Set the layout of the bottom widget
+    bottomWidget->setLayout(bottomLayout);
 
-    // // Add the bottom widget to the main layout
-    // mainLayout->addWidget(bottomWidget);
+    // Add the bottom widget to the main layout
+    //mainLayout->addWidget(bottomWidget);
 
-    // // Set the main layout to the main widget
-    // mainWidget->setLayout(mainLayout);
+    // Set the main layout to the main widget
+    //mainWidget->setLayout(mainLayout);
 
-    // // Set the main widget as the central widget of the application
-    // mainWidget->show();
+    // Set the main widget as the central widget of the application
+    //mainWidget->show();
 
     // Start the application event loop
-
-
-
-
-
     return a.exec();
 }

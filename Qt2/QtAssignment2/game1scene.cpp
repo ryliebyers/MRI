@@ -30,12 +30,18 @@ Game1Scene::Game1Scene(const QString& userName, const QString& profilePicturePat
     bucket->setPos(400, 390);
     bucket->setFlag(QGraphicsItem::ItemIsFocusable);
     bucket->setFocus();
+
     if(totalPoints < 150){
-    // Create timer for droplets
-    timerDrop = new QTimer(this);
-    connect(timerDrop, &QTimer::timeout, this, &Game1Scene::addDroplet);
-    timerDrop->start(600);
+        // Create timer for droplets
+        timerDrop = new QTimer(this);
+        connect(timerDrop, &QTimer::timeout, this, &Game1Scene::addDroplet);
+        timerDrop->start(600);
     }
+
+    // Create timer for droplets
+    // timerDrop = new QTimer(this);
+    // connect(timerDrop, &QTimer::timeout, this, &Game1Scene::addDroplet);
+    // timerDrop->start(600);
 
     // Create and add clouds
     Cloud *cloud1 = new Cloud();

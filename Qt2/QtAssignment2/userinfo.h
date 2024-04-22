@@ -6,6 +6,8 @@
 #include <QPushButton>
 #include "ui_signupui.h"
 
+
+
 class UserInfo : public QDialog {
     Q_OBJECT
 
@@ -13,14 +15,26 @@ class UserInfo : public QDialog {
 public:
     QString m_profilePicturePath; // Store the profile picture path
     QString m_fullName; // Store the user's full name
+    QString userBirthday;
+    QString m_dateOfBirth;
+    bool isSignedInUser=false;
 
-    UserInfo(QWidget *parent = nullptr);
+
+    explicit UserInfo(QWidget *parent = nullptr);
     // Getter functions for user information
     QString getFirstName() const { return firstNameLineEdit->text(); }
     QString getLastName() const { return lastNameLineEdit->text(); }
     QString getProfilePicturePath() const;
     QString getFullName() const;
+    QString getSignedInFullName() const;
+     QString getDateOfBirth() const;
+     // Declaration for getting signed-in user's full name
+    QString getSignedInProfilePicturePath() const;
 
+
+
+signals:
+    void startGameRequested(const QString& fullName, const QString& profilePicturePath);
 
 private slots:
     void startGame();
@@ -34,6 +48,10 @@ private:
     QLineEdit *lastNameLineEdit;
     QLineEdit *profilePicturePathLineEdit;
     Ui::SignUpUI *ui;
+    QString m_signedInFullName;
+    QString m_signedInProfilePicturePath;
+    QLabel *m_signedInFullNameLabel;
+    QLabel *m_signedInProfilePictureLabel;
 
 
     // Function prototype for creating question mark button

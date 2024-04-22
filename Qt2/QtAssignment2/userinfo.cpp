@@ -15,35 +15,38 @@
 #include "level1.h"
 #include "level2.h"
 #include "level3.h"
-UserInfo::UserInfo(QWidget *parent) : QDialog(parent), ui(new Ui::SignUpUI) {
-    //ui->setupUi(this);
 
+UserInfo::UserInfo(QWidget *parent) : QDialog(parent), ui(new Ui::SignUpUI) {
+    // Initialize member variables
+    m_signedInFullNameLabel = nullptr;
+    m_signedInProfilePictureLabel = nullptr;
+
+    // Set window title
     setWindowTitle("User Information");
 
     // Set the fixed size of the dialog window
     setFixedSize(400, 300);
 
-
-
+    // Create main layout
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
-    mainLayout->setAlignment(Qt::AlignCenter); // Align main layout to center
+    mainLayout->setAlignment(Qt::AlignCenter);
 
-    // Create a QHBoxLayout to hold the image and input fields
+    // Create layout for input fields
     QHBoxLayout *layout = new QHBoxLayout;
-    layout->setAlignment(Qt::AlignCenter); // Align layout to center
+    layout->setAlignment(Qt::AlignCenter);
 
-    // Create a QVBoxLayout to hold the input fields
+    // Create layout for input fields
     QVBoxLayout *inputLayout = new QVBoxLayout;
-    inputLayout->setAlignment(Qt::AlignCenter); // Align input layout to center
+    inputLayout->setAlignment(Qt::AlignCenter);
 
     // Username Label and Input Field
     QHBoxLayout *usernameLayout = new QHBoxLayout;
-    usernameLayout->setAlignment(Qt::AlignLeft); // Align layout to the left
+    usernameLayout->setAlignment(Qt::AlignLeft);
     QLabel *usernameLabel = new QLabel("Username:", this);
-    usernameLabel->setAlignment(Qt::AlignLeft); // Align label to the left
+    usernameLabel->setAlignment(Qt::AlignLeft);
     usernameLineEdit = new QLineEdit(this);
     usernameLineEdit->setPlaceholderText("Username");
-    usernameLineEdit->setFixedWidth(250); // Set the width of the username input field
+    usernameLineEdit->setFixedWidth(250);
     usernameLayout->addWidget(usernameLabel);
     usernameLayout->addWidget(usernameLineEdit);
     usernameLayout->setSpacing(10);
@@ -51,19 +54,17 @@ UserInfo::UserInfo(QWidget *parent) : QDialog(parent), ui(new Ui::SignUpUI) {
 
     // Password Label and Input Field
     QHBoxLayout *passwordLayout = new QHBoxLayout;
-    passwordLayout->setAlignment(Qt::AlignLeft); // Align layout to the left
+    passwordLayout->setAlignment(Qt::AlignLeft);
     QLabel *passwordLabel = new QLabel("Password:", this);
-    passwordLabel->setAlignment(Qt::AlignLeft); // Align label to the left
+    passwordLabel->setAlignment(Qt::AlignLeft);
     passwordLineEdit = new QLineEdit(this);
     passwordLineEdit->setPlaceholderText("Password");
     passwordLineEdit->setEchoMode(QLineEdit::Password);
-    passwordLineEdit->setFixedWidth(250); // Set the width of the password input field
+    passwordLineEdit->setFixedWidth(250);
     passwordLayout->addWidget(passwordLabel);
     passwordLayout->addWidget(passwordLineEdit);
     passwordLayout->setSpacing(10);
     inputLayout->addLayout(passwordLayout);
-
-
 
     layout->addLayout(inputLayout);
     mainLayout->addLayout(layout);
@@ -87,10 +88,7 @@ UserInfo::UserInfo(QWidget *parent) : QDialog(parent), ui(new Ui::SignUpUI) {
                               "background-color: blue;"
                               "}");
 
-    // Set tooltip for the guest login button
-    guestLogin->setToolTip("The guest login does not require an account and wouldn't store your information such as account and your score");
-
-    QPushButton *guestQuestionMarkButton = createQuestionMarkButton("By signing in, you can play games and see your history and everything");
+    QPushButton *guestQuestionMarkButton = createQuestionMarkButton("Guest Login: Sign in as a temporary user to access limited features. Your progress and data may not be saved between sessions. For full access and to save your game history, consider creating an account.");
 
     guestLoginLayout->addWidget(guestLogin);
     guestLoginLayout->addWidget(guestQuestionMarkButton);
@@ -116,10 +114,7 @@ UserInfo::UserInfo(QWidget *parent) : QDialog(parent), ui(new Ui::SignUpUI) {
                                 "background-color: orange;"
                                 "}");
 
-    // Set tooltip for the sign in button
-    signInButton->setToolTip("By signing in, you can play games and see your history and everything");
-
-    QPushButton *signInQuestionMarkButton = createQuestionMarkButton("By signing in, you can play games and see your history and everything");
+    QPushButton *signInQuestionMarkButton = createQuestionMarkButton("Sign In: Click here to access your account by entering your username and password.");
 
     signInLayout->addWidget(signInButton);
     signInLayout->addWidget(signInQuestionMarkButton);
@@ -145,24 +140,25 @@ UserInfo::UserInfo(QWidget *parent) : QDialog(parent), ui(new Ui::SignUpUI) {
                                 "background-color: green;"
                                 "}");
 
-    // Set tooltip for the sign up button
-    signUpButton->setToolTip("If you do not already have an account, click the Sign Up button and fill out the form.");
-
-    QPushButton *signUpQuestionMarkButton = createQuestionMarkButton("If you do not already have an account, click the Sign Up button and fill out the form.");
-
+    QPushButton *signUpQuestionMarkButton = createQuestionMarkButton("Sign Up: Click here to create a new account. Start your journey now!");
     signUpLayout->addWidget(signUpButton);
     signUpLayout->addWidget(signUpQuestionMarkButton);
-
     mainLayout->addLayout(signUpLayout);
-
-
     connect(guestLogin, &QPushButton::clicked, this, &UserInfo::startGuestGame);
     connect(signInButton, &QPushButton::clicked, this, &UserInfo::startGame);
     connect(signUpButton, &QPushButton::clicked, this, &UserInfo::signUp);
+
+    // Create layout for signed-in user info - Check if this part is needed????
+    QHBoxLayout *userInfoLayout = new QHBoxLayout;
+    m_signedInProfilePictureLabel = new QLabel(this);
+    m_signedInProfilePictureLabel->setFixedSize(30, 30);
+    userInfoLayout->addWidget(m_signedInProfilePictureLabel);
+
+    m_signedInFullNameLabel = new QLabel(this);
+    userInfoLayout->addWidget(m_signedInFullNameLabel);
+
+    mainLayout->addLayout(userInfoLayout);
 }
-
-
-
 
 QPushButton* UserInfo::createQuestionMarkButton(const QString& tooltipText) {
     QPushButton *questionMarkButton = new QPushButton(this);
@@ -174,6 +170,7 @@ QPushButton* UserInfo::createQuestionMarkButton(const QString& tooltipText) {
 
     return questionMarkButton;
 }
+
 void UserInfo::signUp() {
     // Create a new instance of SignUpUI QDialog
     QDialog *signUpForm = new QDialog(this);
@@ -185,8 +182,6 @@ void UserInfo::signUp() {
     // Show the SignUpUI form
     signUpForm->exec(); // Use exec() instead of show() to display it as a modal dialog
 }
-
-
 
 void UserInfo::startGame() {
     // Open the file for reading
@@ -210,28 +205,53 @@ void UserInfo::startGame() {
 
         // Check if entered username and password match
         if (username == usernameLineEdit->text() && password == passwordLineEdit->text()) {
+            isSignedInUser = true;
             // Close the dialog if the credentials are correct
             accept();
 
-            // Update member variables with user information
-            m_fullName = firstName + " " + lastName;
-            m_profilePicturePath = profilePicturePath;
+            // Emit the signal with the full name and profile picture path
+            emit startGameRequested(firstName + " " + lastName, profilePicturePath);
+
+            // Store the full name for later retrieval
+            m_signedInFullName = firstName + " " + lastName;
+            m_signedInProfilePicturePath = profilePicturePath;
+
+            // Check if today is the user's birthday
+            QDate today = QDate::currentDate();
+            QDate userBirthday = QDate::fromString(dateOfBirth, "yyyy-MM-dd");
+            if (userBirthday.month() == today.month() && userBirthday.day() == today.day()) {
+                // Display a popup window for birthday celebration
+                QMessageBox birthdayPopup;
+                QPixmap birthdayImage(":/images/birthdayEmoji.jpeg");
+                birthdayImage = birthdayImage.scaled(200, 200, Qt::KeepAspectRatio); // Adjust the size here
+                birthdayPopup.setIconPixmap(birthdayImage); // Set the resized birthday image
+                birthdayPopup.setWindowTitle("Happy Birthday!");
+                birthdayPopup.setText("Happy Birthday, " + m_signedInFullName + "!");
+                QPushButton *thankYouButton = birthdayPopup.addButton("Thank you", QMessageBox::AcceptRole);
+                thankYouButton->setDefault(true);
+                birthdayPopup.exec();
+            }
 
 
+             emit startGameRequested(firstName + " " + lastName, profilePicturePath);
+            // // Close the dialog if the credentials are correct
+            accept();
 
-
+            // // Open the level selection dialog
+            LevelSelectionDialog *levelDialog = new LevelSelectionDialog(this);
+             levelDialog->exec();
 
             if(level1Clicked == true){
-            // Pass the username and profile picture path to the Game1Scene class
+                // Pass the username and profile picture path to the Game1Scene class
                 Level1 *scene1 = new Level1(m_fullName, m_profilePicturePath);
 
-            // Create view to visualize the scene
-            QGraphicsView view(scene1);
-            view.setFixedSize(910, 512);
-            view.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-            view.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-            view.show();
-            level1Clicked = false;
+                // Create view to visualize the scene
+                QGraphicsView view(scene1);
+                view.setFixedSize(910, 512);
+                view.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                view.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                view.show();
+                //level1Clicked = false;
             }
 
 
@@ -245,7 +265,7 @@ void UserInfo::startGame() {
                 view.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
                 view.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
                 view.show();
-                level2Clicked = false;
+                //level2Clicked = false;
             }
             if(level3Clicked == true){
                 // Pass the username and profile picture path to the Game1Scene class
@@ -257,12 +277,8 @@ void UserInfo::startGame() {
                 view.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
                 view.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
                 view.show();
-                level3Clicked = false;
+                //level3Clicked = false;
             }
-
-
-
-
             return;
         }
     }
@@ -273,13 +289,23 @@ void UserInfo::startGame() {
 
 
 
+QString UserInfo::getSignedInFullName() const {
+    return m_signedInFullName;
+}
+
+QString UserInfo::getSignedInProfilePicturePath() const {
+    return m_signedInProfilePicturePath;
+}
+QString UserInfo::getDateOfBirth() const {
+    return m_dateOfBirth;
+}
+
 void UserInfo::startGuestGame() {
     // Close the dialog if the credentials are correct
     accept();
-
     // Open the level selection dialog
     LevelSelectionDialog *levelDialog = new LevelSelectionDialog(this);
     levelDialog->exec();
-
     return;
 }
+

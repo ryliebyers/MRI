@@ -14,8 +14,8 @@ class HistoryWindow : public QWidget
 {
     Q_OBJECT
 public:
-    explicit HistoryWindow();
-  void  showScoreHistoryPopup();
+    explicit HistoryWindow(QWidget *parent = nullptr);
+//  void  showScoreHistoryPopup();
     void recordScore();
 signals:
 

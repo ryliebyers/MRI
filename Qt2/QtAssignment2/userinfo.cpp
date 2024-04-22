@@ -264,43 +264,43 @@ void UserInfo::startGame() {
              connect(intermediateDialog, &IntermediateDialog::collectingDropletsClicked, this, &UserInfo::showLevelSelectionDialog);
              intermediateDialog->exec();
 
-            if(level1Clicked == true){
-                // Pass the username and profile picture path to the Game1Scene class
-                Level1 *scene1 = new Level1(m_fullName, m_profilePicturePath);
+            // if(level1Clicked == true){
+            //     // Pass the username and profile picture path to the Game1Scene class
+            //     Level1 *scene1 = new Level1(m_fullName, m_profilePicturePath);
 
-                // Create view to visualize the scene
-                QGraphicsView view(scene1);
-                view.setFixedSize(910, 512);
-                view.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-                view.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-                view.show();
-                //level1Clicked = false;
-            }
+            //     // Create view to visualize the scene
+            //     QGraphicsView view(scene1);
+            //     view.setFixedSize(910, 512);
+            //     view.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+            //     view.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+            //     view.show();
+            //     //level1Clicked = false;
+            // }
 
 
-            if(level2Clicked == true){
-                // Pass the username and profile picture path to the Game1Scene class
-                Level2 *scene1 = new Level2(m_fullName, m_profilePicturePath);
+            // if(level2Clicked == true){
+            //     // Pass the username and profile picture path to the Game1Scene class
+            //     Level2 *scene1 = new Level2(m_fullName, m_profilePicturePath);
 
-                // Create view to visualize the scene
-                QGraphicsView view(scene1);
-                view.setFixedSize(910, 512);
-                view.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-                view.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-                view.show();
-                //level2Clicked = false;
-            }
-            if(level3Clicked == true){
-                // Pass the username and profile picture path to the Game1Scene class
-                Level3 *scene1 = new Level3(m_fullName, m_profilePicturePath);
-                // Create view to visualize the scene
-                QGraphicsView view(scene1);
-                view.setFixedSize(910, 512);
-                view.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-                view.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-                view.show();
-                //level3Clicked = false;
-            }
+            //     // Create view to visualize the scene
+            //     QGraphicsView view(scene1);
+            //     view.setFixedSize(910, 512);
+            //     view.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+            //     view.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+            //     view.show();
+            //     //level2Clicked = false;
+            // }
+            // if(level3Clicked == true){
+            //     // Pass the username and profile picture path to the Game1Scene class
+            //     Level3 *scene1 = new Level3(m_fullName, m_profilePicturePath);
+            //     // Create view to visualize the scene
+            //     QGraphicsView view(scene1);
+            //     view.setFixedSize(910, 512);
+            //     view.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+            //     view.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+            //     view.show();
+            //     //level3Clicked = false;
+            // }
             return;
         }
     }

@@ -8,6 +8,7 @@ SOURCES += \
     gamehistorymanager.cpp \
     globals.cpp \
     historywindow.cpp \
+    intermediatedialog.cpp \
     level1.cpp \
     level2.cpp \
     level3.cpp \
@@ -26,6 +27,7 @@ HEADERS += \
     gamehistorymanager.h \
     globals.h \
     historywindow.h \
+    intermediatedialog.h \
     level1.h \
     level2.h \
     level3.h \

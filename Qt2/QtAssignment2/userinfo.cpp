@@ -15,6 +15,8 @@
 #include "level1.h"
 #include "level2.h"
 #include "level3.h"
+#include "intermediatedialog.h"
+
 
 UserInfo::UserInfo(QWidget *parent) : QDialog(parent), ui(new Ui::SignUpUI) {
     // Initialize member variables
@@ -233,13 +235,15 @@ void UserInfo::startGame() {
             }
 
 
+
              emit startGameRequested(firstName + " " + lastName, profilePicturePath);
             // // Close the dialog if the credentials are correct
             accept();
 
-            // // Open the level selection dialog
-            LevelSelectionDialog *levelDialog = new LevelSelectionDialog(this);
-             levelDialog->exec();
+             // Open the intermediate dialog first
+             IntermediateDialog *intermediateDialog = new IntermediateDialog(this);
+             connect(intermediateDialog, &IntermediateDialog::collectingDropletsClicked, this, &UserInfo::showLevelSelectionDialog);
+             intermediateDialog->exec();
 
             if(level1Clicked == true){
                 // Pass the username and profile picture path to the Game1Scene class
@@ -270,7 +274,6 @@ void UserInfo::startGame() {
             if(level3Clicked == true){
                 // Pass the username and profile picture path to the Game1Scene class
                 Level3 *scene1 = new Level3(m_fullName, m_profilePicturePath);
-
                 // Create view to visualize the scene
                 QGraphicsView view(scene1);
                 view.setFixedSize(910, 512);
@@ -303,9 +306,16 @@ QString UserInfo::getDateOfBirth() const {
 void UserInfo::startGuestGame() {
     // Close the dialog if the credentials are correct
     accept();
+    // Open the intermediate dialog first
+    IntermediateDialog *intermediateDialog = new IntermediateDialog(this);
+    connect(intermediateDialog, &IntermediateDialog::collectingDropletsClicked, this, &UserInfo::showLevelSelectionDialog);
+    intermediateDialog->exec();
+    return;
+}
+
+void UserInfo::showLevelSelectionDialog() {
     // Open the level selection dialog
     LevelSelectionDialog *levelDialog = new LevelSelectionDialog(this);
     levelDialog->exec();
-    return;
 }
 

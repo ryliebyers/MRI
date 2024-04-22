@@ -10,7 +10,7 @@
 #include <QScrollArea>
 #include "globals.h"
 LevelSelectionDialog::LevelSelectionDialog(QWidget *parent) : QDialog(parent) {
-    setWindowTitle("Option Selection Window");
+    setWindowTitle("Choose Level");
     resize(450, 300);
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setAlignment(Qt::AlignCenter);

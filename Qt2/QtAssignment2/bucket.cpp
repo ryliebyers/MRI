@@ -8,12 +8,12 @@
 Bucket::Bucket() {scaleFactor = 1;}
 void Bucket::keyPressEvent(QKeyEvent *event) {
 
-    qreal step = 50; // Step size for movement
+    qreal step = 40; // Step size for movement
     // Get the current bounding rect of the scene
     QRectF sceneRect = scene()->sceneRect();
     if (event->key() == Qt::Key_Right) {
         // Move right
-        if (x() + boundingRect().width() + step < 1070) {
+        if (x() + boundingRect().width() + step < 1080) {
             setPos(x() + step, y());
         }
         // Flip horizontally from the center

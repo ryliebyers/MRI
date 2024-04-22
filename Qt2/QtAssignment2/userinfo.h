@@ -40,6 +40,7 @@ private slots:
     void startGame();
     void startGuestGame();
     void signUp();
+    void showLevelSelectionDialog();
 
 private:
     QLineEdit *usernameLineEdit;

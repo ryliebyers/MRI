@@ -17,8 +17,8 @@ class GameHistoryManager : public QObject
 public:
     explicit GameHistoryManager(QObject *parent = nullptr);
 
-    void saveGameScore(const QString& username, int score);
-
+    int getUserBestScore(const GameData& data);
+  void  saveGameScore(const QString& username,const GameData& data );
 private:
     void saveGameData(const GameData& data);
 };

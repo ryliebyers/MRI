@@ -17,6 +17,8 @@ public:
     QString m_fullName; // Store the user's full name
     QString userBirthday;
     QString m_dateOfBirth;
+    QString  m_UserName;
+
     bool isSignedInUser=false;
 
 
@@ -30,8 +32,7 @@ public:
      QString getDateOfBirth() const;
      // Declaration for getting signed-in user's full name
     QString getSignedInProfilePicturePath() const;
-
-
+     QString getUserName() const;
 
 signals:
     void startGameRequested(const QString& fullName, const QString& profilePicturePath);

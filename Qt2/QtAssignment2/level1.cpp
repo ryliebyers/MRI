@@ -78,7 +78,7 @@ Level1::Level1(const QString& userName, const QString& profilePicturePath)
 Level1::~Level1() {
     delete bucket;
 }
-
+static bool updatingEnabled = true;
 void Level1::updatePointsDisplay() {
     // Update or create the text items for displaying score and drops caught
     if (!pointsTextItem) {
@@ -100,6 +100,7 @@ void Level1::updatePointsDisplay() {
         dropsTextItem->setPos(dropsTextPos);
     }
 
+    if(!isWon && totalPoints <= 150){
     // Update the text item with the current values
     QString scoreStr = "Score: " + QString::number(totalPoints);
     QString dropsStr = "DropsCaught: " + QString::number(DropsCaught);
@@ -109,6 +110,10 @@ void Level1::updatePointsDisplay() {
     // Position the text item within the points rectangle
     QPointF textPos = pointsRect->boundingRect().center() - pointsTextItem->boundingRect().center();
     pointsTextItem->setPos(textPos);
+    if (totalPoints == 150) {
+        updatingEnabled = false; // Disable updating once totalPoints reaches 150
+    }
+    }
 }
 
 void Level1::addDroplet() {

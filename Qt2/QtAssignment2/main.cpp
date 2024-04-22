@@ -38,46 +38,10 @@ int main(int argc, char *argv[]) {
     QString profilePicturePath = userInfoDialog.getSignedInProfilePicturePath();
     QString dateOfBirth = userInfoDialog.getDateOfBirth();
 
-    // // Read the user information from the file
-    // QTextStream in(&file);
-
-    // QString firstName, lastName, dateOfBirth, gender, username, password, profilePicturePath;
-    // while (!in.atEnd()) {
-    //     firstName = in.readLine().split(":").at(1).trimmed();
-    //     lastName = in.readLine().split(":").at(1).trimmed();
-    //     dateOfBirth = in.readLine().split(":").at(1).trimmed();
-    //     gender = in.readLine().split(":").at(1).trimmed();
-    //     username = in.readLine().split(":").at(1).trimmed();
-    //     password = in.readLine().split(":").at(1).trimmed();
-    //     profilePicturePath = in.readLine().split(":").at(1).trimmed();
-    // }
-
-    // // Close the file
-    // file.close();
 
     // Create a widget to hold the profile picture, user name, and score
     QWidget *bottomWidget = new QWidget();
     QHBoxLayout *bottomLayout = new QHBoxLayout(bottomWidget);
-
-
-
-
-
-    // // Create the scene with user information
-    // Game1Scene *scene1 = new Game1Scene(fullName, profilePicturePath);
-
-    // // Create view to visualize the scene
-    // QGraphicsView *view = new QGraphicsView(scene1);
-    // view->setFixedSize(910, 512);
-    // view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    // view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    // // Create a QWidget to hold the view and additional widgets
-    // QWidget *mainWidget = new QWidget();
-    // QVBoxLayout *mainLayout = new QVBoxLayout(mainWidget);
-
-    // // Add the view to the main layout
-    // mainLayout->addWidget(view);
 
 
 
@@ -234,7 +198,6 @@ int main(int argc, char *argv[]) {
     }
 
 
-
     // Create "Quit" button
     QPushButton *quitButton = new QPushButton("Quit");
     // Set style sheet for the button
@@ -262,15 +225,5 @@ int main(int argc, char *argv[]) {
     // Set the layout of the bottom widget
     bottomWidget->setLayout(bottomLayout);
 
-    // Add the bottom widget to the main layout
-    //mainLayout->addWidget(bottomWidget);
-
-    // Set the main layout to the main widget
-    //mainWidget->setLayout(mainLayout);
-
-    // Set the main widget as the central widget of the application
-    //mainWidget->show();
-
-    // Start the application event loop
     return a.exec();
 }

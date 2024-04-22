@@ -9,4 +9,6 @@ extern int DropsCaught;
 extern bool level1Clicked;
 extern bool level2Clicked;
 extern bool level3Clicked;
+extern bool isQuit;
+extern bool isWon;
 #endif // GLOBALS_H

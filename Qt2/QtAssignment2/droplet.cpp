@@ -59,6 +59,9 @@ void Droplet::moveDroplet() {
                     scene()->addItem(youWonText);
                 }
 
+                if(totalPoints > 150){
+                isWon = true;
+                }
                 scene()->removeItem(this);
                 delete this;
                 return;

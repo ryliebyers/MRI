@@ -54,8 +54,15 @@ void Droplet::moveDroplet() {
                     QPointF centerPoint = QPointF(scene()->width() / 2 - youWonText->boundingRect().width() / 2,
                                                   scene()->height() / 2 - youWonText->boundingRect().height() / 2);
                     youWonText->setPos(centerPoint);
+                    // Create a QGraphicsPixmapItem for the image
+                    QGraphicsPixmapItem *imageItem = new QGraphicsPixmapItem(QPixmap(":/AdditionalWindow.gif").scaled(130, 130));
 
-                    // Add the text item to the scene
+                    // Set the position of the image item
+                    QPointF imagePos = QPointF(scene()->width() / 2 - imageItem->boundingRect().width() / 2,
+                                               scene()->height() / 2 - imageItem->boundingRect().height() / 2 + youWonText->boundingRect().height());
+                    imageItem->setPos(imagePos);
+                    scene()->addItem(imageItem);
+
                     scene()->addItem(youWonText);
                 }
 

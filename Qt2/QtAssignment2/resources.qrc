@@ -77,5 +77,6 @@
         <file>images/birthdayEmoji.jpeg</file>
         <file>images/birthdayEmoji.gif</file>
         <file>images/default.jpeg</file>
+        <file>AdditionalWindow.gif</file>
     </qresource>
 </RCC>

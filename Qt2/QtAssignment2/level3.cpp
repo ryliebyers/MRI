@@ -94,7 +94,7 @@ void Level3::updatePointsDisplay() {
         QPointF dropsTextPos = pointsRect->boundingRect().center() + QPointF(0, 20); // Position it below the score
         dropsTextItem->setPos(dropsTextPos);
     }
-    if(!isWon && totalPoints <= 150){
+    if(!isWon && totalPoints == 150){
     // Update the text item with the current values
     QString scoreStr = "Score: " + QString::number(totalPoints);
     QString dropsStr = "DropsCaught: " + QString::number(DropsCaught);

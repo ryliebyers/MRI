@@ -60,12 +60,12 @@ HistoryWindow::HistoryWindow(QWidget *parent) : QWidget(parent)
    connect(okButton, &QPushButton::clicked, this, &HistoryWindow::close);
 }
 
-
-
-
-
 void HistoryWindow::recordScore() {
-    if (((isWon && totalPoints <= 150)) || &QApplication::quit) {
+    if (((isWon)) || &QApplication::quit) {
+
+
+
+
 
 
     QString filePath = QDir::homePath() + "/" + USERNAME + ".txt";

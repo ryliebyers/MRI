@@ -118,6 +118,7 @@ void Level1::updatePointsDisplay() {
         isWon = true;
     }
     }
+
 }
 
 void Level1::addDroplet() {

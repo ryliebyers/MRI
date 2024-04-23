@@ -40,10 +40,7 @@ void Droplet::moveDroplet() {
                 sound->AddSplash();
                 totalPoints+=50;
                 DropsCaught += 1;
-                // if(totalPoints == 150){
-                //     isWon = true;
-                // }
-                if(totalPoints >= 150){
+                if(isWon || totalPoints == 150){
                     // Create a QGraphicsTextItem for "You Won"
                     QGraphicsTextItem *youWonText = new QGraphicsTextItem("You Won!");
 

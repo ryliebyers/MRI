@@ -1,5 +1,5 @@
-#ifndef USERINFO_H
-#define USERINFO_H
+#ifndef LOGINWINDOW_H
+#define LOGINWINDOW_H
 
 #include <QDialog>
 #include <QLineEdit>
@@ -38,7 +38,7 @@ signals:
     void startGameRequested(const QString& fullName, const QString& profilePicturePath);
 
 private slots:
-    void startGame();
+    void startUserGame();
     void startGuestGame();
     void signUp();
     void showLevelSelectionDialog();
@@ -61,5 +61,5 @@ private:
 
 };
 
-#endif // USERINFO_H
+#endif // LOGINWINDOW_H
 

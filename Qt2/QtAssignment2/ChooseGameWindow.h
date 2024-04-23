@@ -1,5 +1,5 @@
-#ifndef INTERMEDIATEDIALOG_H
-#define INTERMEDIATEDIALOG_H
+#ifndef CHOOSEGAMEWINDOW_H
+#define CHOOSEGAMEWINDOW_H
 
 #include <QDialog>
 #include <QLabel>
@@ -20,4 +20,4 @@ private slots:
     void onCollectingDropletsClicked();
 };
 
-#endif // INTERMEDIATEDIALOG_H
+#endif // CHOOSEGAMEWINDOW_H

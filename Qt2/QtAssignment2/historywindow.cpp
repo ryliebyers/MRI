@@ -1,6 +1,6 @@
 // historywindow.cpp
 #include "signupui.h"
-#include "userinfo.h"
+#include "LoginWindow.h"
 #include "historywindow.h"
 #include "gamehistorymanager.h"
 #include <QMessageBox>

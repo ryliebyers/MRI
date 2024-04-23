@@ -6,7 +6,7 @@
 #include <QTextStream>
 #include <QDebug>
 #include "game1scene.h"
-#include "userinfo.h"
+#include "LoginWindow.h"
 #include "historywindow.h"
 #include <QDateTime>
 #include "level1.h"
@@ -26,13 +26,6 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    // Open the file for reading
-    QFile file(QDir::homePath() + "/userInfo.txt");
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "Failed to open file for reading.";
-        return 0;
-    }
-
     // Retrieve signed-in user information from the UserInfo dialog
     QString fullName = userInfoDialog.getSignedInFullName();
     QString profilePicturePath = userInfoDialog.getSignedInProfilePicturePath();
@@ -42,10 +35,6 @@ int main(int argc, char *argv[]) {
     // Create a widget to hold the profile picture, user name, and score
     QWidget *bottomWidget = new QWidget();
     QHBoxLayout *bottomLayout = new QHBoxLayout(bottomWidget);
-
-
-
-
 
     if(level1Clicked == true){
         // Create view to visualize the scene

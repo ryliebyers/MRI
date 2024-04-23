@@ -1,6 +1,6 @@
 #ifndef SIGNUPUI_H
 #define SIGNUPUI_H
-#include "userinfo.h"
+#include "LoginWindow.h"
 #include <QWidget>
 
 namespace Ui {

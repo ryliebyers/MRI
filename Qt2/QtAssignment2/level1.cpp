@@ -78,7 +78,7 @@ Level1::Level1(const QString& userName, const QString& profilePicturePath)
 Level1::~Level1() {
     delete bucket;
 }
-static bool updatingEnabled = true;
+
 void Level1::updatePointsDisplay() {
     // Update or create the text items for displaying score and drops caught
     if (!pointsTextItem) {
@@ -111,7 +111,7 @@ void Level1::updatePointsDisplay() {
     QPointF textPos = pointsRect->boundingRect().center() - pointsTextItem->boundingRect().center();
     pointsTextItem->setPos(textPos);
     if (totalPoints == 150) {
-        updatingEnabled = false; // Disable updating once totalPoints reaches 150
+
     }
     }
 }

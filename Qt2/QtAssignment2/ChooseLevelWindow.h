@@ -1,5 +1,5 @@
-#ifndef LEVELSELECTIONDIALOG_H
-#define LEVELSELECTIONDIALOG_H
+#ifndef CHOOSELEVELWINDOW_H
+#define CHOOSELEVELWINDOW_H
 
 #include <QDialog>
 #include <QPushButton>
@@ -26,4 +26,4 @@ private slots:
 
 };
 
-#endif // LEVELSELECTIONDIALOG_H
+#endif // CHOOSELEVELWINDOW_H

@@ -69,7 +69,6 @@ Level2::Level2(const QString& userName, const QString& profilePicturePath)
     pointsTextItem = new QGraphicsTextItem(str, pointsRect);
     QPointF textPos = pointsRect->boundingRect().center() - pointsTextItem->boundingRect().center();
     pointsTextItem->setPos(textPos);
-    updatePointsDisplay();
 
 }
 
@@ -79,6 +78,8 @@ Level2::~Level2() {
 }
 
 void Level2::updatePointsDisplay() {
+    if(!isWon){
+
     // Update or create the text items for displaying score and drops caught
     if (!pointsTextItem) {
         // Create the text item for displaying score
@@ -98,7 +99,6 @@ void Level2::updatePointsDisplay() {
         QPointF dropsTextPos = pointsRect->boundingRect().center() + QPointF(0, 20); // Position it below the score
         dropsTextItem->setPos(dropsTextPos);
     }
-    if(!isWon && totalPoints <= 150){
     // Update the text item with the current values
     QString scoreStr = "Score: " + QString::number(totalPoints);
     QString dropsStr = "DropsCaught: " + QString::number(DropsCaught);

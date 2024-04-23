@@ -6,7 +6,7 @@
 #include <QKeyEvent>
 #include "droplet.h"
 #include "globals.h"
-
+#include "historywindow.h"
 
 Level2::Level2(const QString& userName, const QString& profilePicturePath)
 {
@@ -110,12 +110,15 @@ void Level2::updatePointsDisplay() {
     pointsTextItem->setPos(textPos);
     if (totalPoints == 150) {
         isWon = true;
+        HistoryWindow hist;
+        hist.recordScore();
     }
     }
 }
 
 void Level2::addDroplet() {
     // Create droplet
+
     updatePointsDisplay();
 
     Droplet *droplet = new Droplet();

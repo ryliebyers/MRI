@@ -12,7 +12,7 @@
 
 HistoryWindow::HistoryWindow(QWidget *parent) : QWidget(parent)
 {
-   recordScore(); // Call recordScore in constructor
+ //  recordScore(); // Call recordScore in constructor
 
    QVBoxLayout *layout = new QVBoxLayout(this);
 

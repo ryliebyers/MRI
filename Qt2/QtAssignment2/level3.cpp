@@ -5,7 +5,7 @@
 #include <QKeyEvent>
 #include "droplet.h"
 #include "globals.h"
-
+#include "historywindow.h"
 
 Level3::Level3(const QString& userName, const QString& profilePicturePath)
 {
@@ -107,6 +107,8 @@ void Level3::updatePointsDisplay() {
     pointsTextItem->setPos(textPos);
     if (totalPoints == 150) {
         isWon = true;
+        HistoryWindow hist;
+        hist.recordScore();
     }
     }
 }

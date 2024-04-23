@@ -10,7 +10,6 @@
 #include <QMediaPlayer>
 
 
-
 Droplet::Droplet() {
     // Set up timer for movement
     timer = new QTimer(this);
@@ -69,6 +68,7 @@ void Droplet::moveDroplet() {
                     scene()->addItem(imageItem);
 
                     scene()->addItem(youWonText);
+
                 }
 
 

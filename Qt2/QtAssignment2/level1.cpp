@@ -7,7 +7,7 @@
 #include "globals.h"
 #include <QVBoxLayout>
 #include <QAudioOutput>
-
+#include "historywindow.h"
 Level1::Level1(const QString& userName, const QString& profilePicturePath)
 {
 
@@ -116,6 +116,8 @@ void Level1::updatePointsDisplay() {
     pointsTextItem->setPos(textPos);
     if (totalPoints == 150) {
         isWon = true;
+        HistoryWindow hist;
+        hist.recordScore();
     }
     }
 
@@ -132,6 +134,7 @@ void Level1::addDroplet() {
     connect(droplet, &Droplet::outOfScene, [=]() {
         removeItem(droplet);
         delete droplet;
+
     });
 
 }

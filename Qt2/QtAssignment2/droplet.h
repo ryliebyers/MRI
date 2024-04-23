@@ -24,7 +24,7 @@ private:
     QTimer *timer;
     qreal speed = 5;
     //might delete these later
-    Points m_points; // Member variable to hold the Points object
+  //  Points m_points; // Member variable to hold the Points object
     //Sound m_sound;   // Member variable to hold the Sound object
 private slots:
     void moveDroplet();

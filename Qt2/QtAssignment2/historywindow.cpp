@@ -61,12 +61,7 @@ HistoryWindow::HistoryWindow(QWidget *parent) : QWidget(parent)
 }
 
 void HistoryWindow::recordScore() {
-    if (((isWon)) || &QApplication::quit) {
-
-
-
-
-
+    if (((isWon && totalPoints == 150)) || &QApplication::quit) {
 
     QString filePath = QDir::homePath() + "/" + USERNAME + ".txt";
     QFile file(filePath);

@@ -38,7 +38,13 @@ void Droplet::moveDroplet() {
             //if same type where bucket is then remove droplet and returns
             if (typeid(*(colliding_items[i])) == typeid(Bucket)) {
                 sound->AddSplash();
-                totalPoints+=50;
+
+                if (totalPoints <150){
+
+                    totalPoints+=50;
+                }
+
+
                 DropsCaught += 1;
                 if(isWon || totalPoints == 150){
                     // Create a QGraphicsTextItem for "You Won"
@@ -76,7 +82,10 @@ void Droplet::moveDroplet() {
     } else {
         //Out of window
         sound->AddBeep();
+        if (totalPoints <150){
+
         totalPoints-=5;
+        }
         qDebug() << "Total points: " << totalPoints;
         scene()->removeItem(this);
         delete this;

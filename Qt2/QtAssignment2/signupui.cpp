@@ -168,7 +168,7 @@ bool SignUpUI::isValidPassword(const QString &password) {
 bool SignUpUI::usernameExists(const QString &username, const QString &filePath) {
     QFile file(filePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QMessageBox::warning(nullptr, "Error", "Could not open file for reading.");
+        QMessageBox::warning(nullptr, "Error", "userInof.txt was created. User information was stored in your home directory.");
         return false;
     }
 
